@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sponsor scopes · The SOLVE Framework</title>
+<style>
+:root{
+  --red:#c5050c; --red-dark:#9b0000; --ink:#1c1917; --muted:#57534e;
+  --faint:#a8a29e; --bg:#fdfcfb; --card:#ffffff; --line:#e7e5e4;
+  --wash:#f7f5f3; --good:#166534; --accent-wash:#fdf0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(6px);background:rgba(253,252,251,.92)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-weight:750;text-decoration:none;color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
+.brand .q{color:var(--red)}
+nav.menu{display:flex;gap:4px;flex-wrap:wrap}
+nav.menu a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:6px 11px;border-radius:8px}
+nav.menu a:hover{color:var(--ink);background:var(--wash)}
+nav.menu a.active{color:var(--red);font-weight:650;background:var(--accent-wash)}
+main{padding:48px 0 24px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.35rem;line-height:1.15;letter-spacing:-.01em;margin-bottom:16px;font-weight:600}
+.lede{font-size:1.16rem;color:var(--muted);max-width:44em;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:1.55rem;margin:52px 0 14px;font-weight:600;letter-spacing:-.005em}
+h3{font-size:1.08rem;margin:26px 0 8px;font-weight:700}
+p{margin:0 0 14px;max-width:46em}
+ul,ol{margin:0 0 14px 1.35em;max-width:44em}
+li{margin-bottom:7px}
+a{color:var(--red-dark)}
+a:hover{color:var(--red)}
+strong{font-weight:680}
+.rule{border:none;border-top:1px solid var(--line);margin:44px 0}
+.btn-row{display:flex;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:650;font-size:.95rem;
+  padding:11px 20px;border-radius:10px}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-dark)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--faint);background:var(--wash)}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:block;
+  text-decoration:none;color:var(--ink)}
+a.card:hover{border-color:var(--faint);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.card .meta{font-size:.8rem;color:var(--faint);font-weight:650;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.card h3{margin:0 0 6px;font-size:1.06rem}
+.card p{font-size:.93rem;color:var(--muted);margin:0}
+.qblock{display:flex;gap:18px;margin:30px 0;padding:24px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px}
+.qnum{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:750;font-size:1.15rem;font-family:Georgia,serif}
+.qbody h3{margin:2px 0 2px;font-size:1.22rem;font-family:Georgia,serif;font-weight:650}
+.qbody .qq{font-size:1.02rem;color:var(--red-dark);font-style:italic;margin-bottom:12px}
+.qbody p,.qbody ul{font-size:.97rem}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;margin-right:6px;margin-bottom:4px}
+.tag.drill{background:#eef2ff;color:#3730a3}
+.tag.sim{background:var(--accent-wash);color:var(--red-dark)}
+.tag.code{background:#ecfdf5;color:var(--good)}
+.tag.time{background:var(--wash);color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:18px 0 24px;font-size:.92rem}
+th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:8px 10px 6px;vertical-align:bottom}
+td{border-bottom:1px solid var(--line);padding:9px 10px;vertical-align:top}
+tr td:first-child{font-weight:650;white-space:nowrap}
+.callout{background:var(--wash);border-left:4px solid var(--red);border-radius:0 10px 10px 0;
+  padding:16px 20px;margin:22px 0;max-width:46em}
+.callout p:last-child{margin-bottom:0}
+.callout .label{font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.tmpl{background:#1c1917;color:#fafaf9;border-radius:12px;padding:18px 22px;margin:18px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.7;max-width:46em;overflow-x:auto}
+.tmpl .v{color:#fca5a5}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin:26px 0}
+.unit .meta{font-size:.8rem;color:var(--red);font-weight:750;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.unit h3{margin:0 0 4px;font-size:1.3rem;font-family:Georgia,serif;font-weight:650}
+.unit .goal{color:var(--muted);font-size:.98rem;margin-bottom:16px}
+.ex{border-top:1px solid var(--line);padding:14px 0 4px;margin-top:8px}
+.ex h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.ex p,.ex ul{font-size:.94rem;color:var(--ink)}
+.ex .deliver{font-size:.9rem;color:var(--muted)}
+.ex .deliver strong{color:var(--ink)}
+.check{background:var(--wash);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:.93rem}
+.check .label{font-weight:750;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--good);margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;font-size:.88rem;color:var(--muted)}
+footer a{color:var(--muted)}
+.footgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:640px){h1{font-size:1.8rem}.qblock{flex-direction:column;gap:10px}}
+</style>
+<style>
+.itoggle{font-weight:650;font-size:.78rem;letter-spacing:.04em;color:var(--muted);background:none;
+  border:1px solid var(--line);border-radius:99px;padding:5px 13px;cursor:pointer;font-family:inherit}
+.itoggle:hover{color:var(--ink);border-color:var(--faint)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--faint);border-radius:10px;
+  padding:12px 16px;margin:16px 0;font-size:.9rem;max-width:46em}
+.inote .ilabel{display:block;font-size:.7rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.inote p{font-size:.9rem;margin:0 0 8px}
+.inote p:last-child{margin-bottom:0}
+body.instructor .inote{display:block}
+</style>
+<style>
+/* sponsor-scopes page components */
+.eyebrow{font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:0 0 6px}
+section{scroll-margin-top:80px;margin-top:52px}
+section>h2{margin-top:6px}
+.prose p{max-width:46em}
+.callout.build{border-left-color:#1d4ed8}
+.solve-strip{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}
+.solve-strip .letter{display:inline-flex;align-items:baseline;gap:8px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);font-size:.85rem;color:var(--muted)}
+.solve-strip .letter b{font-family:Georgia,serif;font-size:1.15rem;color:var(--red);font-weight:700}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.9rem;margin:14px 0 6px}
+.toc a{text-decoration:none;color:var(--muted);border-bottom:1px solid var(--line)}
+.toc a:hover{color:var(--red)}
+.arche{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.arche .card h4{font-size:1.02rem;margin:0 0 6px;font-weight:700}
+.arche .card p{font-size:.92rem;color:var(--muted);margin:0 0 8px}
+.arche .card .who{font-size:.8rem;color:var(--faint)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:18px 0 14px}
+.filters .eyebrow{margin:0 4px 0 0;font-size:.72rem;color:var(--muted)}
+.chip{font-size:.8rem;font-weight:600;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--muted);cursor:pointer;font-family:inherit}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.count{font-size:.85rem;color:var(--faint);margin-left:auto}
+.catalog{display:flex;flex-direction:column;gap:10px}
+details.scope{background:var(--card);border:1px solid var(--line);border-radius:14px}
+details.scope summary{list-style:none;cursor:pointer;padding:16px 20px;display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:start}
+details.scope summary::-webkit-details-marker{display:none}
+details.scope summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px;border-radius:14px}
+details.scope summary .name{font-family:Georgia,serif;font-weight:650;font-size:1.12rem}
+details.scope summary .ask{grid-column:1/-1;color:var(--muted);font-size:.93rem;max-width:none}
+details.scope summary .ask b{color:var(--ink)}
+.tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.tags .tag{margin:0;background:var(--wash);color:var(--muted)}
+.tag.year{background:transparent;border:1px solid var(--line)}
+.tags .tag.tricky{color:var(--red-dark);background:var(--accent-wash)}
+.wrong{margin-top:14px;padding:12px 16px;background:var(--accent-wash);border-radius:10px;font-size:.9rem;color:var(--ink)}
+.wrong b{color:var(--red-dark)}
+.arche{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.arche .card{position:relative}
+.arche .card .num{position:absolute;top:14px;right:16px;font-family:Georgia,serif;font-size:1.6rem;color:var(--faint);line-height:1}
+.arche .card p b{color:var(--ink)}
+.briefread{font-size:.94rem;color:var(--ink);max-width:none;margin-top:12px}
+.briefread b{color:var(--red-dark)}
+.tags .tag.deep{background:#ecfdf5;color:var(--good)}
+.arche .card .trk{font-size:.88rem;color:var(--ink);border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
+.arche .card .trk b{color:var(--red-dark)}
+.practice{display:flex;flex-direction:column;gap:14px;margin-top:18px}
+.px{display:grid;grid-template-columns:52px 1fr;gap:0 16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+@media (max-width:640px){.px{grid-template-columns:1fr}}
+.px .pl{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.px h4{font-size:1.02rem;font-weight:700;margin:0 0 6px}
+.px h4+p{margin-bottom:14px}
+.px p{font-size:.95rem;max-width:none}
+.px p:last-child{margin-bottom:0}
+.tags .tag.deck{background:#eef2ff;color:#3730a3}
+details.scope .body{padding:6px 20px 20px;border-top:1px solid var(--line)}
+.five{display:grid;grid-template-columns:40px 1fr;gap:10px 14px;margin-top:14px}
+.five .cell-label{font-family:Georgia,serif;font-size:1.25rem;font-weight:700;color:var(--red);line-height:1.3}
+.five .cell{font-size:.94rem;color:var(--muted)}
+.five .cell b{color:var(--ink)}
+.hook{margin-top:14px;padding:12px 16px;background:#eef2ff;border-radius:10px;font-size:.9rem;color:var(--ink)}
+.hook b{color:#3730a3}
+.src{font-size:.8rem;color:var(--faint);margin-top:10px}
+article.walk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px 30px;margin:26px 0}
+@media (max-width:640px){article.walk{padding:20px 18px}}
+article.walk header{position:static;background:none;border:0;backdrop-filter:none;margin-bottom:14px}
+article.walk header h3{font-family:Georgia,serif;font-size:1.5rem;margin:0;font-weight:650}
+article.walk header .why{color:var(--faint);font-size:.9rem;margin-top:4px}
+article.walk .setup{color:var(--muted);max-width:none}
+.wq{border-top:1px solid var(--line);padding:18px 0 6px;display:grid;grid-template-columns:52px 1fr;gap:0 16px}
+@media (max-width:640px){.wq{grid-template-columns:1fr}}
+.wq .letter{font-family:Georgia,serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.wq h4{font-size:1.05rem;font-weight:700;margin:0 0 6px}
+.wq h4 span{color:var(--faint);font-weight:400;font-size:.9rem}
+.wq p{color:var(--ink);max-width:none;font-size:.96rem}
+.wq p.coach{background:var(--wash);border-radius:10px;padding:10px 14px;font-size:.9rem}
+.loop{margin-top:14px;border:1px dashed var(--faint);border-radius:10px;padding:14px 18px;color:var(--ink);font-size:.93rem}
+.loop b{color:var(--red-dark)}
+.sim{margin-top:14px;background:#eef2ff;border-radius:10px;padding:14px 18px;color:var(--ink);font-size:.93rem}
+.sim b{color:#3730a3}
+.crit{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+.crit .c{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.crit .c h4{font-family:Georgia,serif;font-size:1.15rem;font-weight:650;margin:0 0 10px}
+.crit .c h4 small{color:var(--faint);font-weight:400;font-family:inherit;font-size:.88rem;margin-left:6px}
+.crit dl{display:grid;grid-template-columns:130px 1fr;gap:6px 14px;margin:0;font-size:.93rem}
+.crit dt{font-size:.72rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding-top:3px}
+.crit dd{margin:0;color:var(--ink)}
+.crit dd.good{color:var(--good)}
+@media (max-width:640px){.crit dl{grid-template-columns:1fr}}
+.tablewrap{overflow-x:auto}
+tr td:first-child{white-space:normal}
+.disguise{background:var(--wash);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:12px 18px;margin:0 0 22px;font-size:.93rem;max-width:46em;color:var(--ink)}
+.disguise b{color:var(--red)}
+.nda{background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 16px;margin:0 0 22px;font-size:.9rem;max-width:46em}
+.nda b{color:#92400e}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+  <a class="brand" href="index.html">The <span class="q">SOLVE</span> Framework · GB210</a>
+  <nav class="menu"><a href="index.html">Start here</a><a href="framework.html">The framework</a><a href="units.html">Units & exercises</a><a href="reference.html">Reference</a><a href="sponsor-scopes.html" class="active">Sponsor scopes</a><a href="about.html">About</a></nav>
+  <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+</div></header>
+<main><div class="container">
+<div class="kicker">Sponsor scopes · instructor resource</div>
+<h1>SOLVE meets the sponsor scopes</h1>
+<p class="lede">Twenty-one capstone scopes modeled on real GB410 projects from 2025 and 2026, read through the five SOLVE questions. Four recurring families of scope; SOLVE applied to every project; where students predictably go wrong, letter by letter, illustrated with composite team paths; and the simulation experiences in GB210 that would let them practice those moments first.</p>
+<div class="disguise"><b>A note on the cases.</b> These are not the sponsors' scope documents. Company names are fictional, identifying figures are rounded or altered, and details have been changed; what is preserved is the <em>shape</em> of each ask and the patterns in how student teams tend to approach them. The team paths described below are composites, not any actual team's work. The real scopes are confidential to the GB410 program and are not reproduced here.</div>
+<div class="solve-strip" aria-label="The five questions">
+  <span class="letter"><b>S</b> Surface the real problem</span><span class="letter"><b>O</b> Observe the behavior</span><span class="letter"><b>L</b> Learn the drivers</span><span class="letter"><b>V</b> Vet the shakiest claim</span><span class="letter"><b>E</b> Earn the yes</span>
+</div>
+<div class="toc"><a href="#read">How to read this</a><a href="#families">Four scope families</a><a href="#catalog">Catalog of 21 scopes</a><a href="#walk">Six walkthroughs</a><a href="#tricky">Where students go wrong</a><a href="#decks">Illustrative team paths</a><a href="#gb410">For GB410 coaches</a><a href="#gb210">GB210 practice</a></div>
+<section id="read">
+  <div class="eyebrow">Orientation</div>
+  <h2>How to read this</h2>
+  <div class="prose">
+    <p>A sponsor scope is written from the sponsor's side of the table, and almost every one in this set is organized the same way: background, a "central business question," and then a list of deliverables. That ordering matters. Sponsors write the <strong>E</strong> first (here is what we want handed to us) and leave the <strong>S</strong> and <strong>O</strong> implicit (here is why, and here is who would have to do something differently). The student team's first job is to run the scope backward, from the deliverable list to the bottom line it serves to the behavior in between, and get the sponsor to agree to that restatement. Every walkthrough below starts there.</p>
+    <p>Three things recur across the set and are worth naming once. First, almost no scope states a <strong>baseline</strong>. Harbor & Oak gives spend and return on ad spend; Tidewater gives the age skew of its subscribers; the rest leave "current practice" for the team to go measure. Second, many scopes are <strong>grab bags</strong>: three or more loosely related asks (Quietcue, CampusClear Snow, Meridian, Northway, Ridgeline). Negotiating those down is the S-question in its most practical form. Third, <strong>outcome evidence is almost never reachable in a semester</strong>, so V has to be done with cheap behavioral tests, and several sponsors quietly invite exactly that ("test or pilot one of your recommendations," "assertiveness to cold call," "connections with clients to access quotes"). Teams rarely take the invitation.</p>
+    <p>The page does four things, in order. It sorts the scopes into <a href="#families">four recurring families</a>. It shows <a href="#catalog">SOLVE applied to all 21</a>, with six <a href="#walk">full walkthroughs</a>. It locates <a href="#tricky">where students go wrong</a>, letter by letter, illustrated with composite team paths. And it proposes the <a href="#gb210">simulation experiences</a> in GB210 that would let students practice exactly those moments before a real sponsor is on the call.</p>
+  </div>
+  <div class="callout"><p><strong>Coverage.</strong> The set is modeled on 8 projects from fall 2025 and 13 from 2026.</p></div>
+</section>
+
+<section id="families">
+  <div class="eyebrow">Pattern</div>
+  <h2>Four scope families</h2>
+  <div class="prose"><p>The teaching note contrasts diagnosis-first projects with build-first ones. Sorting two years of sponsor scopes, four shapes recur, and they line up with the letters: the first two turn on the framework's distinctive moves (S and O), the last two on the two faces of V. Each family has a tell you can spot in week one, a characteristic failure, and a SOLVE move that gets you out. The order below is the order worth teaching them in.</p></div>
+  <div class="arche">
+    <div class="card"><div class="num">1</div><h4>Build us the thing</h4>
+      <p><b>As it arrives:</b> "Recommend an inventory system that integrates with our ERP." "Redesign our homepage." "Design six app workflows." The deliverables are nouns you could hand someone, and nothing in the scope is a behavior.</p>
+      <p class="trk"><b>Tricky: S, then O.</b> Either the spec gets built, or a good team finds the real problem mid-project and re-scopes without telling the sponsor. The move is to <em>earn the build</em>: find the person who lives with the pain, get the number, restate the problem with the named build as one candidate answer, and get that agreed.</p>
+      <div class="who">Kestrel · CampusClear Snow · Ledgerline · CROL · Summit omni-channel</div></div>
+    <div class="card"><div class="num">2</div><h4>Why aren't they buying?</h4>
+      <p><b>As it arrives:</b> a segment the sponsor wants and isn't getting, plus a theory about why ("it's price," "our benefits skew old"). The goal is stated as a bottom line.</p>
+      <p class="trk"><b>Tricky: O, then L.</b> Teams write the bottom line where a behavior belongs and learn the segment from trend reports. The move is to name a behavior you could watch someone do, with a baseline, then learn it from the sponsor's own data and a few real people.</p>
+      <div class="who">Tidewater · Northway · Quietcue · PVL · Meridian · Ridgeline</div></div>
+    <div class="card"><div class="num">3</div><h4>Is this idea feasible?</h4>
+      <p><b>As it arrives:</b> a concept the sponsor already has (a commissary, a non-insurance product, a rental-rate scheme, a reimbursement model) and a request for a verdict. Outcome evidence is unavailable by design.</p>
+      <p class="trk"><b>Tricky: S, then V.</b> The sponsor never says what the verdict is <em>for</em> (cost? quality? growth?), and the model rests on one assumption nobody named. The move is analytical V: rank the must-be-trues, run sensitivity as "does the answer flip?", and name the untested number out loud. <b>Special case, pricing:</b> when the concept is a price, elasticity is always the shakiest claim and the cheapest test is quoting the number to a real customer.</p>
+      <div class="who">Greenfork · Prairie Mutual Life · Lakeshore · Nimbus Pediatric Imaging · BuildForward</div></div>
+    <div class="card"><div class="num">4</div><h4>Where should we go next?</h4>
+      <p><b>As it arrives:</b> rank cities, counties, channels, or categories. The ranking feels like a finding; it is a hypothesis about a buyer who has never heard of the sponsor.</p>
+      <p class="trk"><b>Tricky: O, then V.</b> Market statistics stand in for buyer behavior, and the ranking ships without a test attached. The move is behavioral V: name the buyer's behavior, attach the cheapest test to the top-ranked option (ten phone calls, five owner conversations), and present the ranking as the claim it is.</p>
+      <div class="who">Little Sprouts · Prairie Commons Health · Collegiate Housing Partners · Harbor & Oak · Summit mobility</div></div>
+  </div>
+</section>
+<section id="catalog">
+  <div class="eyebrow">Catalog</div>
+  <h2>The 21 historical scopes, one line per question</h2>
+  <div class="prose"><p>Grouped by family, in teaching order. The most instructive scopes get a full five-question read, the characteristic failure, and a note on GB210 practice; the rest get a short SOLVE read. Filter by year, family, or by which letter is the tricky one.</p></div>
+  <div class="filters" role="group" aria-label="Filters">
+    <span class="eyebrow">Year</span>
+    <button class="chip" data-f="year" data-v="2025" aria-pressed="false">2025</button>
+    <button class="chip" data-f="year" data-v="2026" aria-pressed="false">2026</button>
+    <span class="eyebrow" style="margin-left:10px">Family</span>
+    <button class="chip" data-f="fam" data-v="buying" aria-pressed="false">why aren't they buying</button>
+    <button class="chip" data-f="fam" data-v="where" aria-pressed="false">where next</button>
+    <button class="chip" data-f="fam" data-v="feasible" aria-pressed="false">feasibility</button>
+    <button class="chip" data-f="fam" data-v="build" aria-pressed="false">build us the thing</button>
+        <span class="eyebrow" style="margin-left:10px">Tricky letter</span><button class="chip" data-f="tricky" data-v="S" aria-pressed="false">S</button><button class="chip" data-f="tricky" data-v="O" aria-pressed="false">O</button><button class="chip" data-f="tricky" data-v="L" aria-pressed="false">L</button><button class="chip" data-f="tricky" data-v="V" aria-pressed="false">V</button><button class="chip" data-f="tricky" data-v="E" aria-pressed="false">E</button>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="catalog" id="cat-list"></div>
+</section>
+<script>
+const SCOPES = [
+{name:"Kestrel Robotics",year:2025,fam:"build",famLabel:"build us the thing",tricky:["S", "O"],wrong:"Accepting 'compare three vendors' as the problem; or, having discovered the process is not ready, re-scoping to process fixes without telling the sponsor and without a single number.",sector:"Robotics-as-a-service",
+ ask:"Recommend an inventory management system that tracks robot components and spare parts across statuses, integrates with a new ERP and its maintenance tool, and supports barcode or mobile scanning. Deliverables: current-state process maps, requirements, a comparison of at least three vendors, trial plan, implementation roadmap.",
+ S:"The scope names the solution (a system) and hides the problem. The ask behind the ask: parts are invisible, so repairs and installs slip and Kestrel eats the cost of parts it cannot prove it returned. Bottom line: repair turnaround time and parts shrink. Baseline: tracking by work order and maintenance-tool reports, requisitions over Slack.",
+ O:"Field technicians and integrators log a part at each handoff: arrival, requisition, install, return. Software does nothing until that behavior exists.",
+ L:"A journey map of a part through the system lifecycle (a team on this path might build six of them) with blockers marked: late logging, Slack requisitions, single-person dependency, no verification at decommission.",
+ V:"Two competing claims: 'a new system fixes it' versus 'process discipline in the existing tools fixes it.' Shakiest either way: technicians will log in the field under time pressure. Cheapest test: a paper or form-based intake checklist at one integrator site for two weeks, counting compliance.",
+ E:"Either a vendor recommendation with the process changes it depends on, or the process changes alone with a statement of when a system becomes worth buying. Heavy adoption: the people who must change are field techs and third-party integrators.",
+ hook:"The canonical pre-shaped build. Perfect simulation seed: a CFO persona asking for vendor rankings, an operations persona who reveals the Slack requisition habit, and designed discovery that the integration question is premature."},
+{name:"CampusClear Snow",year:2025,fam:"build",famLabel:"build us the thing",tricky:["S", "O"],wrong:"Designing screens for all six asks, or re-scoping to something more tractable without tying the new scope to the founders' bottom line.",sector:"Student-run residential snow removal, 10 campuses",
+ ask:"Six asks: an in-app job workflow for shovelers, a dispatch notification approach, remote onboarding, a ratings system, a 24–48 hour commitment-confirmation process, and routing with backups at scale.",
+ S:"All six asks serve one bottom line: jobs completed on time per storm without a manager intervening, plus refunds avoided. Baseline: several hundred homeowners, manual monitoring, refund requests tied to weather. The S-work is getting the founders to rank the six.",
+ O:"Shovelers confirm 48 hours ahead and then actually show up and finish; customers get one clear notice and do not call. The confirmation behavior predicts everything downstream.",
+ L:"A journey of one storm: forecast, dispatch, confirm, travel, shovel, photo, customer notified, refund or not. Blockers cluster at confirmation and no-shows; the sponsor's refund-by-weather data shows where.",
+ V:"'Students will reconfirm when asked.' Cheapest test: a text-message reconfirmation on one campus for two storms, measuring reply rate and no-show rate against the others. No app change required.",
+ E:"Workflow designs plus a rollout plan that makes the new path easier than ignoring it. Heavy adoption: hundreds of part-time student workers.",
+ hook:"Six pre-shaped builds in one brief; a simulation could give a CTO persona who wants screens designed and a customer-service persona who reveals that no-shows are the real pain."},
+{name:"Ledgerline Research",year:2026,fam:"build",famLabel:"build us the thing",depth:"brief",brief:"A redesign that is probably right, but for the wrong metric as written. The bottom line is subscriptions, not pageviews; the behavior is a free reader clicking from an article into a tool and coming back. Heatmap data locates the drop-off; the cheapest test is an A/B of one homepage module measured on trial starts, which a two-person team can ship.",tricky:["S", "O"],wrong:"Redesigning for pageviews and engagement when the bottom line is subscriptions; delivering mockups with no measurable behavior attached.",sector:"Retail investor research platform",
+ ask:"Recommendations, with mockups, for redesigning the homepage and newsfeed to surface timely insights, raise engagement, and strengthen free-to-paid pathways; content strategy guidance; monetization ideas for the freemium model.",
+ S:"Bottom line: subscription conversions and retention; the newsfeed's roughly half a million monthly pageviews are an output. The ask is pre-shaped (redesign the homepage); the ask behind it is 'more readers become subscribers.'",
+ O:"A free visitor clicks from a news article into a dataset or tool, comes back within a week, and subscribes. heatmap data show what they do today.",
+ L:"A journey from landing page to article to tool to paywall to payment, with drop-off quantified from the traffic data. Benchmarks from other platforms are for generating options, not evidence.",
+ V:"'Surfacing news on the homepage raises subscriptions, not just pageviews.' Cheapest test: an A/B of one homepage module for two weeks, measured on trial starts. A two-person founding team can ship this.",
+ E:"Mockups plus a test plan with expected lift. Light adoption: the founders ship it themselves.",
+ hook:"Small, data-rich, and fast to test; suits a short build-first simulation with a heatmap dataset."},
+{name:"Capital Region Opportunity League (CROL)",year:2026,fam:"build",famLabel:"build us the thing",depth:"brief",brief:"A marketing plan whose real behavior is internal. External audiences must act (enroll, give), but the plan only works if program staff stop running their own channels, and the scope never says so. The S-work is naming that second behavior; the cheapest test is running one campaign through the draft template with two departments.",tricky:["O", "E"],wrong:"Writing a comprehensive plan that names audiences and channels but never confronts the internal behavior: will program staff actually give up their own newsletters?",sector:"Nonprofit, workforce and community programs",
+ ask:"A strategic marketing plan for a growing organization: audit of current activity, stakeholder map, strengths and gaps, strategies and tactics with KPIs, an annual marketing plan template, and an implementation plan with roles.",
+ S:"Bottom line: program enrollment, donations, and partnerships; the plan is the means. Baseline: fragmented, duplicative marketing spread across departments. The ask behind the ask: one coordinated effort that staff actually follow.",
+ O:"Two behaviors: external audiences act (enroll, give, partner) and, internally, staff use one shared plan instead of posting independently.",
+ L:"A channel-by-audience audit from Constant Contact, social, and web analytics, then a journey for one or two priority audiences (a program participant, a donor).",
+ V:"'Staff will adopt a coordinated plan and template.' Cheapest test: run one campaign through the draft template with two departments and see whether it holds.",
+ E:"The plan and template, with an adoption argument about who owns the calendar and how conflicts get resolved. Heavy internal adoption.",
+ hook:"The adoption burden is internal, which students rarely anticipate; a simulation could include two program directors who each want their own newsletter."},
+{name:"Summit Cycles – omni-channel",year:2026,fam:"build",famLabel:"build us the thing",depth:"brief",brief:"A strategy scope so broad that narrowing is the whole S. 'Best-in-class omni-channel' hides one real question: which single capability (inventory visibility, ship-to-store, dealer fulfillment) would change a shopper's behavior first, and will independent dealers participate? Ten dealer interviews with a concrete proposal on the table is the test.",tricky:["S", "E"],wrong:"A benchmark-everything strategy deck that never narrows to one capability, with independent-dealer participation assumed rather than argued.",sector:"Bicycle manufacturer and retailer, hundreds of stores",
+ ask:"A strategic plan for a best-in-class omni-channel experience combining Summit stores, warehouse inventory, the online platform, and independent retailers: customer journey, strategic assets, inventory optimization, ship-to-store and fulfillment, benchmarking, and a directional implementation plan.",
+ S:"The scope is broad and pre-shaped ('best-in-class omni-channel'). The ask behind the ask: which one capability (inventory visibility, ship-to-store, pickup, dealer fulfillment) would most change customer behavior first? Bottom line: conversion and repeat purchase across channels.",
+ O:"A shopper checks online stock and buys in a store (or the reverse); a store sells a bike it does not have from warehouse or dealer inventory; an independent retailer agrees to share inventory and fulfill.",
+ L:"A purchase journey for the two or three highest-value bike categories, and a tree of fulfillment paths with cost and speed. Benchmarks from outside cycling feed options, not evidence.",
+ V:"'Independent retailers will participate in shared inventory and ship-to-store.' Cheapest test: ten dealer interviews with a concrete proposal on the table.",
+ E:"A prioritized capability roadmap with the dealer-participation argument front and center. Heavy adoption: store staff and independent retailers.",
+ hook:"Teaches narrowing a large strategic scope to one behavior worth testing."},
+{name:"Tidewater Seafood Club",year:2026,fam:"buying",famLabel:"why aren't they buying",tricky:["O", "L"],wrong:"Building personas from generational trend reports and accepting price as the cause because it is the answer young people give first.",sector:"Seafood subscription, direct-to-consumer",
+ ask:"Why is Tidewater failing to convert 25–35-year-olds, and what products, pricing, delivery models, and go-to-market approach would profitably engage them without compromising sourcing and sustainability values?",
+ S:"Bottom line: subscriber growth and lifetime value in a younger cohort. Baseline is stated: about two-thirds of subscribers are 55-plus. The sponsor even names the uncertainty: product fit, market fit, or both.",
+ O:"A 25–35-year-old who cooks at home starts a subscription and is still subscribed at month four. Leading: trial orders, first-box cook-through, second-box retention.",
+ L:"A journey map of how a 30-year-old buys fish today (grocery counter, meal kit, restaurant) with boosters and blockers: price per meal, portion size, freezer space, cooking confidence, awareness. Subscriber analytics and existing surveys give the quantities.",
+ V:"Competing claims (price, portion, awareness) have different cheapest tests: a smaller-box landing page at a lower price point, a recipe-and-video bundle, a targeted ad with a trial offer. Run the one that attacks the shakiest claim first.",
+ E:"A recommendation with one tested offer, a profitability model per box, and an adoption argument for operations and sourcing. Moderate adoption: fulfillment and sourcing must support a new SKU.",
+ hook:"The cleanest O-question in the set. See the full walkthrough."},
+{name:"Northway Motor Club",year:2025,fam:"buying",famLabel:"why aren't they buying",tricky:["O", "V"],wrong:"Delivering Gen Z trend research and a list of benefits to add, with no named behavior, no projected sign-ups, and the sponsor's offer of a pilot left on the table.",sector:"Membership & insurance",
+ ask:"How do Northway's membership products, marketing, and digital experience resonate with Gen Z, and what product, marketing, and technology initiatives should follow? Deliverables: findings, a Gen Z marketing plan, digital improvements, mockups and journey maps.",
+ S:"The bottom line is Gen Z household acquisition and renewal. A baseline check puts Gen Z at roughly 1% of member households. The ask behind the ask: which one initiative would move that number, not a survey of Gen Z preferences.",
+ O:"Gen Z adults (roughly 18–28) sign up for a membership and renew it at twelve months. Leading indicators: trial sign-ups from a campus channel, first-benefit usage within 30 days.",
+ L:"A journey map, not a tree: awareness, perceived relevance ('roadside assistance is for my parents'), price, sign-up friction, first use, renewal. Three years of sales-by-generation data from Northway locate where the drop happens.",
+ V:"'Gen Z will buy a Northway membership if it bundles the digital subscriptions they already pay for.' Shakiest: willingness to pay for Northway rather than the subscriptions directly. Cheapest test: a campus landing page with a price and a waitlist button, or a conjoint survey of 100 students. The scope explicitly allowed a pilot.",
+ E:"A recommendation with one piloted initiative, a quantified acquisition estimate, and a measurement plan. Adoption burden is moderate: product, marketing, and digital teams each own a piece.",
+ hook:"A clean 'why aren't they buying' brief with a sponsor who invites a pilot. Good simulation seed: a marketing VP persona who wants 'a Gen Z plan' and a data analyst persona who holds the sales-by-generation cut."},
+{name:"Quietcue Health",year:2025,fam:"buying",famLabel:"why aren't they buying",tricky:["S", "V"],wrong:"Choosing one of the three asks silently, then swapping the hard behavior (seniors refusing) for a channel that sounds easier, without evidence the behavior differs there.",sector:"Medication-adherence sensors, Medicare-billed",
+ ask:"Three asks: how seniors make health purchasing decisions and which channels reach them; which new markets (tribal communities, FQHCs, caregiver networks, B2C) to pursue and how to differentiate; what other uses the sensor could have and who would pay.",
+ S:"Bottom line: enrolled, monitored patients per pharmacy client (each one is billable monthly). Baseline: a few dozen pharmacy clients, outreach by cold call, seniors responding with 'defensive, defiance, and denial.' The ask behind the grab bag: how do we get more patients to say yes?",
+ O:"A senior agrees to enrollment and keeps the sensor in use past ninety days; a pharmacist makes the referral instead of leaving it to a cold call.",
+ L:"A journey from pharmacist referral to outreach call to consent to install to persistence, with blockers at each step. The sponsor's adoption data should show where the funnel actually leaks.",
+ V:"A plausible team claim: 'tribal pharmacies will adopt faster because decision chains are shorter.' Shakiest condition: that senior resistance is smaller there, not just that the pharmacy is easier to sign. Cheapest test: a 90-day outreach to a short list of named pharmacies, with enrollment counted, not meetings.",
+ E:"A recommendation with a pilot and a measurement plan. Moderate adoption: the sponsor's own outreach staff and partner pharmacists.",
+ hook:"A grab-bag brief for teaching scope negotiation: which of the three asks serves the bottom line fastest? Persona: a founder who quotes a $300 billion market and a pharmacist who says seniors hang up."},
+{name:"Premier Volleyball League (PVL)",year:2026,fam:"buying",famLabel:"why aren't they buying",depth:"brief",brief:"Teen engagement is the visible metric; parent repeat purchase is the behavior that pays. Existing YouGov research and a persona deck make this an O-and-L project: map the household journey (teen discovers, parent pays, family returns or not) and build lifetime value from observed repeat rates, not assumed frequency. The cheapest test is a pre-sale page for one concept at one price.",tricky:["O", "L"],wrong:"Letting teen engagement metrics stand in for parent spending, and building the lifetime-value projection on assumed frequency rather than observed repeat purchase.",sector:"Professional women's sports",
+ ask:"An audience insight report on 13–17-year-old 'power fans' and their parents, including a lifetime-value projection; three revenue concepts with audience, price, channel, and uptake considerations; a 3–5 year forecast per concept.",
+ S:"Bottom line: recurring, predictable revenue per fan household. Baseline: YouGov research and a persona deck already exist; the ask behind the ask is which concept converts teen enthusiasm into a parent's repeat purchase.",
+ O:"Parents buy again (second ticket, renewal, merchandise reorder); teens advocate (bring a friend, share content). The lifetime-value number is only as real as the repeat behavior behind it.",
+ L:"A household journey: teen discovers, attends, asks, parent pays, family returns or doesn't. A lifetime-value tree (frequency × basket × years) shows which lever the three concepts actually pull.",
+ V:"'Parents will pay the proposed price repeatedly.' Cheapest test: a pre-sale or waitlist page for one concept at one price, or a short survey with a real purchase prompt to existing ticket buyers.",
+ E:"Three concepts with a forecast, the test results for the leading one, and the adoption argument for PVL's product and ticketing teams. Moderate burden.",
+ hook:"A segment-growth brief with existing survey data; the designed discovery is that teen engagement metrics and parent spending do not move together."},
+{name:"Meridian Press",year:2026,fam:"buying",famLabel:"why aren't they buying",depth:"brief",brief:"Three asks (rebrand print for a digital generation, retain and reactivate clients, improve customer experience) that pull in different directions. The reactivation ask is the one closest to revenue and the cheapest to test: mail a sample box to twenty paused accounts and count quotes in sixty days. A team that takes all three produces a tagline.",tricky:["S"],wrong:"Taking all three asks and producing a tagline; never choosing the reactivation ask, which is the one closest to revenue and the easiest to test.",sector:"Commercial printing",
+ ask:"Three asks: reposition print for a digital generation (research, brand strategy, campaign); a client retention and reactivation blueprint with early-warning indicators and campaigns; a customer-experience enhancement plan with satisfaction benchmarking.",
+ S:"Bottom line: retained and reactivated print revenue. The three asks pull in different directions; the reactivation ask is the most measurable and the closest to revenue. Baseline: which accounts paused or shrank, and when.",
+ O:"A paused client places a new order; a younger marketer requests a print quote. The brand campaign matters only if it produces the second behavior.",
+ L:"A churn tree (why clients reduce print: budget, digital shift, a bad job, a contact left) from account data and interviews, and a journey of a marketer's annual channel decision.",
+ V:"'A creative reactivation touch brings paused clients back.' Cheapest test: send a sample box or handwritten mailer to twenty paused accounts and count replies and quotes in 60 days.",
+ E:"A blueprint with the indicators, the campaign, and the test results. Moderate adoption: sales reps and customer-service reps have to run it.",
+ hook:"Grab bag plus a cheap, fun behavioral test. Persona: a marketing manager who wants a tagline and an HR lead who wants young recruits, neither of which is the revenue problem."},
+{name:"Ridgeline Optics (accessories)",year:2026,fam:"buying",famLabel:"why aren't they buying",depth:"brief",brief:"Seven areas of exploration in the scope, one behavior underneath: a customer buying a riflescope leaves with the right rings and mount the first time. Attach rate and return rate are the indicators; fitment and return data locate the confusion point. A fit chart piloted at five dealers for a month is the test, and it is cheaper than any of the seven areas.",tricky:["L", "V"],wrong:"Ideas across all seven areas in the scope, without using fitment and return data to locate the confusion point, and without a dealer pilot.",sector:"Sport optics",
+ ask:"Expand accessory market share by improving how customers discover, understand, select, and buy rings, mounts, and tripods in store and online: pain points, merchandising, packaging and fit guidance, assortment, digital tools, cross-industry lessons, and impact estimates, with an in-store emphasis.",
+ S:"Bottom line: accessory attach rate on core optic sales, and accessory returns. Baseline: fragmented, confusing selection; Ridgeline leads in optics but not in accessories. The ask behind the ask: make the right accessory the obvious one at the moment of the optic purchase.",
+ O:"A customer buying a riflescope leaves with the correct rings and mount the first time, in store or online; a dealer's counter staff can answer the fit question.",
+ L:"A journey for the optic-plus-accessory purchase in two channels, with blockers at fitment confusion; the fitment data, top-seller and return data quantify them.",
+ V:"'A fit guide at the shelf (or a compatibility tool online) raises attach rate.' Cheapest test: pilot signage or a laminated fit chart at five dealers for a month, attach rate against matched dealers.",
+ E:"A recommendation with the pilot results and a rollout plan for dealers and packaging. Moderate adoption: dealers and merchandising.",
+ hook:"A retail behavior problem with a clear leading indicator (attach rate); the designed discovery is that confusion, not assortment, is the blocker."},
+{name:"Greenfork Kitchens (commissary model)",year:2026,fam:"feasible",famLabel:"feasibility",tricky:["S", "L"],wrong:"Modeling the whole menu, and never getting the owner to rank cost, quality, and expansion speed, so the model answers a question nobody chose.",sector:"Fast-casual restaurants, about ten locations",
+ ask:"Evaluate the operational and financial feasibility of a commissary kitchen: structure (centralized or hybrid, co-located or separate), what to centralize, startup and operating cost, savings, break-even, sensitivity to location count, and implications for expansion and real estate.",
+ S:"Bottom line: food and labor cost per store and consistency of quality across a growing footprint. Baseline: the store-level P&Ls and recipe costing Greenfork will share. The ask behind the ask: at what store count does a commissary pay, and what does it break?",
+ O:"Store kitchens stop prepping the centralized items and managers accept product made elsewhere; prep hours move from nine stores to one facility; drivers deliver on a schedule that holds.",
+ L:"A cost tree by SKU and process (labor minutes, ingredient cost, waste) identifies what to centralize; savings equal bulk purchasing plus labor consolidation minus facility, transport, and quality risk.",
+ V:"'Quality holds and the savings survive distribution cost.' Cheapest test: one high-volume prep item made in one store's kitchen and delivered to three others for two weeks, with cost and manager feedback tracked.",
+ E:"A feasibility recommendation with a sensitivity table (store count, volume, rent) and a conditional trigger: pursue when X is true. Moderate adoption: store managers have to trust the product.",
+ hook:"A textbook analytical-evidence project with a cheap behavioral test hiding inside it. See the full walkthrough."},
+{name:"Prairie Mutual Life",year:2025,fam:"feasible",famLabel:"feasibility",tricky:["S", "V"],wrong:"Picking a concept with a scoring matrix before the COO has said how mission and economics trade off, then building a five-year model on an adoption rate nobody tested.",sector:"Member-owned life insurer",
+ ask:"Develop a non-insurance product roadmap: 1–3 concepts with one top recommendation, a five-year financial analysis, execution plan, marketing plan, and change-management plan for employees and agents.",
+ S:"Prairie Mutual Life's stated vision is closing the rural health and longevity gap; the business constraint is 'economically workable.' The ask behind the ask: a product that rural members will actually use and that a commission-paid agent force will actually sell. Baseline: members today have only insurance products plus a few benefits (including a wellness app).",
+ O:"Two behaviors, and both must move: rural members adopt and keep using a health product (monthly active use, not purchase), and agents present it in the sales conversation.",
+ L:"Tree first (which gap: chronic disease, provider access, isolation, fitness), then a journey for the leading concept. The anonymized member sample and member research are for locating the segment, not for decorating the deck.",
+ V:"For any product concept, the shakiest condition is sustained use, and second shakiest is that agents sell it. Cheapest test: an email opt-in offer to a member sample, free kit to volunteers, usage tracked for eight weeks. Teams tend to propose exactly this pilot and not run it.",
+ E:"A recommendation plus a pilot design, with value stated in both dollars and a health-behavior metric. Adoption burden is heavy: it asks agents to sell something new and members to change daily habits.",
+ hook:"Rich for GB210 because the bottom line is a mission metric, not profit. A COO persona who says 'economically workable' and an agent persona who says 'I get paid on policies' would force the O-question."},
+{name:"Lakeshore Community Church",year:2025,fam:"feasible",famLabel:"feasibility",tricky:["V"],wrong:"Surveying partners about needs without a price, then presenting market benchmarks as if they were evidence of willingness to pay.",sector:"Church / community real estate",
+ ask:"Assess how the church's underused property can support community partners: partner space needs, a space-use concept with rough modification cost, a rental rate framework, and a market-informed rate for the current daycare tenant.",
+ S:"The church is not profit-seeking but must cover operating and capital costs while advancing four named priorities. Baseline: the daycare pays well under half a dollar per square foot against a local market near $1.50. The ask behind the ask: can the building pay for itself with mission-aligned tenants, and at what rate?",
+ O:"Mission-aligned organizations sign leases or book recurring hours at the proposed rates; the daycare accepts a revised rate and stays. If nobody signs, the framework is decoration.",
+ L:"A cost tree (utilities per square foot, capital reserve, administration) gives the floor; a journey map of a nonprofit looking for space (how they find it, what they can pay, how often they need it) gives the demand side.",
+ V:"'Aligned nonprofits will pay roughly half of market rate for shared space.' Cheapest test: put an actual offer with rates and terms in front of the partner list and count replies. A survey that goes out without prices tests nothing.",
+ E:"A tiered rate framework, a layout concept, and a daycare rate recommendation that the church council can vote on, with a short list of tenants who have said yes in principle. Adoption is moderate: the council, the daycare, and whoever administers bookings.",
+ hook:"A feasibility scope where V is cheap and concrete (send the offer). Teaches that a survey is not a test of willingness to pay."},
+{name:"Nimbus Pediatric Imaging",year:2026,fam:"feasible",famLabel:"feasibility",depth:"brief",brief:"The marketing deck is the tempting ask; the reimbursement question decides whether the company exists. Must-be-true ranking at its starkest: before positioning or messaging, can a pediatrician bill for a photo-based screening, through which code, paid by whom? Five billing-office conversations and one payer call come before everything else.",tricky:["S", "V"],wrong:"Building the physician marketing deck, which is fun, before answering whether anyone can bill for a screening, which decides whether the company exists.",sector:"Software-as-a-medical-device, pediatrics",
+ ask:"Evaluate whether Nimbus Pediatric Imaging's proposed business model is viable, recommend alternatives, outline a reimbursement pathway with estimated payment per use, and build a physician-facing marketing strategy with budget and sample materials.",
+ S:"Bottom line: paid screenings per clinic per month. The ask behind the ask is blunt: will anyone pay for this, who, and through what code? The founders are physicians focused on product; the baseline is zero commercial use.",
+ O:"A pediatrician (or nurse) photographs an infant's head during a well visit, and the clinic bills for it. The second behavior is the hard one.",
+ L:"A journey of a well-child visit (who touches the baby, how many minutes, who codes the visit) plus a tree of payment routes: CPT or category III codes, payer coverage, per-use license, parent self-pay.",
+ V:"'A payable code exists or can be reached.' Cheapest test: five conversations with clinic billing offices and one payer, plus a look at how comparable digital screening tools got paid. The marketing deck is worthless until this holds.",
+ E:"A business-model recommendation ranked by reimbursement realism, then the marketing strategy built on it. Heavy adoption: it changes physician workflow.",
+ hook:"Teaches must-be-true ranking: the marketing ask is tempting and the reimbursement question is the one that can kill the company."},
+{name:"BuildForward (BF)",year:2026,fam:"feasible",famLabel:"feasibility · pricing",depth:"brief",brief:"The pricing special case. Grant revenue is shrinking and fee-for-service work must carry more weight; the question is how far rates can rise, for which clients, without losing the mission-driven ones. Benchmarks are not a test of elasticity; quoting the new rate on the next five bids is, and the sponsor offered connections to make it possible. The recommendation needs a win-rate monitor the board can watch.",tricky:["V", "E"],wrong:"Benchmarking rates and proposing an increase schedule without testing elasticity on a single bid, and without a win-rate monitor the board can watch.",sector:"Nonprofit construction training",
+ ask:"A market and analytics evaluation of BuildForward's fee-for-service construction work: competitor landscape, client segmentation, rate benchmarking, historical funding analysis, and a multi-year fee-increase schedule.",
+ S:"Bottom line: fee-for-service revenue and margin large enough to offset a shrinking grant base. Baseline: historical revenue mix and current rates. The ask behind the ask: how much can we raise rates, for whom, without losing the mission-driven clients?",
+ O:"Existing clients accept a higher rate on the next job; new cost-sensitive or employer clients hire BuildForward. The construction team has to quote the new number with confidence.",
+ L:"A revenue tree (clients × jobs × rate) by segment, benchmarked against competitor quotes the sponsor can help obtain. The funding history shows how fast the gap is opening.",
+ V:"'Mission-aligned clients will stay at a 10–15% increase.' Cheapest test: quote the new rate on the next five bids and track wins; the sponsor offered connections to get competitor quotes.",
+ E:"A pricing roadmap with a segment-by-segment schedule and a monitoring plan for win rate. Moderate adoption: the construction team and the board.",
+ hook:"Pricing with an elasticity test that fits inside a semester. Also a good example of a scope that already states its own vulnerability (grant volatility)."},
+{name:"Little Sprouts Parent + Baby Expo",year:2026,fam:"where",famLabel:"where next",tricky:["L", "V"],wrong:"Ranking cities on generic attractiveness criteria without first mining the home-market P&L for what actually made it work; never talking to a prospective sponsor in the top city.",sector:"Events, maternal health",
+ ask:"Rank the top three U.S. cities for a 2027 launch against criteria the founders provide, with an opportunity snapshot per city (sponsors and exhibitors with contacts, venues with pricing, marketing channels) and a note on what a sustainable annual presence requires.",
+ S:"Bottom line: a profitable, repeatable expo in each new market within a defined number of years. Baseline: the home-market P&L the founders will share. The ask behind the ask: what made the home market work, and which of those ingredients travels?",
+ O:"Sponsors and exhibitors in a city where nobody has heard of the brand buy booths; expectant parents buy tickets. Booth sales are the leading indicator; ticket sales lag.",
+ L:"An event-economics tree (sponsorship, booths, tickets, minus venue, marketing, travel) fitted to the home city, then projected by city. The criteria the founders supply are the start of the tree, not the end.",
+ V:"'Sponsors will commit without a local track record.' The scope asks for 'assertiveness to cold call'; the cheapest test is calling ten prospective sponsors in the top-ranked city and counting soft commitments.",
+ E:"A ranked list with the model behind it and a per-city snapshot. Light adoption: two founders decide.",
+ hook:"A market-ranking brief where the founders hold a home-market P&L they will share only if asked what made the first city work. Good for teaching that rankings are hypotheses, and that the cheapest test (ten phone calls) is something students design in the sim and run in GB410."},
+{name:"Bellwether Advisory / Prairie Commons Health",year:2025,fam:"where",famLabel:"where next",tricky:["S", "E"],wrong:"Drifting from the sizing the sponsor asked for into strategy advice in the sponsor's own domain; delivering narrative where numbers were requested.",sector:"Proposed rural health insurer",
+ ask:"Contribute to a feasibility study for a start-up insurer: total addressable market in target rural counties, competitor profiles and market share, payer mix, and a ranked list of counties and segments to prioritize.",
+ S:"The sponsor is making a go/no-go decision on founding an insurer; the students' piece is the market-sizing input. Bottom line: covered lives attainable in year one. The ask is unusually well specified; the S-work is keeping the deliverable tied to the numbers asked for.",
+ O:"Employers (and county governments) switch their health plan to an unknown new carrier; members stay in-county for routine care instead of driving to the big-city systems.",
+ L:"A sizing tree: counties × covered lives × segment (large employer, small employer, public, Medicare/Medicaid, exchange), populated from a commercial provider database and SEC filings. Leakage (out-of-county care) is the quantity that makes the business model work.",
+ V:"'Employers will switch for lower premiums plus a local-access promise.' Cheapest test: ten conversations with HR leads at the largest employers in the top three counties, asking what would make them move.",
+ E:"A report with the ranked counties, the market-share estimate and its assumptions, and competitor profiles. Light adoption: the sponsor reads it and decides.",
+ hook:"A data-heavy sizing project; the designed discovery would be that the best counties by leakage are not the best by employer concentration."},
+{name:"Collegiate Housing Partners",year:2026,fam:"where",famLabel:"where next",depth:"brief",brief:"Three metros, one behavior: a property owner who has never heard of a locally based manager takes a meeting and signs. Housing statistics and CoStar data size the pool; only owner conversations explain why anyone switches managers. Rank the metros, then attach fifteen owner calls to the top one before the roadmap is written.",tricky:["O", "V"],wrong:"Comparing metros on student-housing statistics and never asking why a property owner switches managers, which is the only behavior that produces a contract.",sector:"Property management",
+ ask:"Compare three target metros for growth; build a financial model per market; design a business-development and sales approach; write a brand-positioning brief with 3–5 PR tactics; deliver a 6–12 month roadmap.",
+ S:"Bottom line: new third-party management contracts (units under management) from the smallest footprint in Collegiate Housing Partners' history. The ask behind the ask: why did owners leave or not sign, and what would make a new one say yes?",
+ O:"A property owner or investor in a target metro takes a meeting with Collegiate Housing Partners and signs a management agreement. Everything in the brand brief exists to produce that meeting.",
+ L:"A conversion tree (owners identified × reached × meetings × proposals × signed) and a journey of how owners choose and fire managers. CoStar, IREM, and NAA data size the pool; interviews explain the switch.",
+ V:"'Owners in a new metro will hire a locally based manager with a 40-year record.' Cheapest test: fifteen owner conversations across the three markets, or a small outreach pilot with a real pitch and a meeting count.",
+ E:"A market choice, a sales playbook, and a roadmap with owners and milestones. Moderate adoption: Collegiate Housing Partners' own sales effort has to change.",
+ hook:"Three-market comparison with a sales-behavior core; a simulation could plant the discovery that the best market on housing fundamentals is the worst on owner receptivity."},
+{name:"Harbor & Oak Menswear",year:2025,fam:"where",famLabel:"where next · spend allocation",depth:"brief",brief:"The rare scope that states its own baseline (spend, margin, a claimed return on ad spend, seasonality, list size), which makes the headline ROAS the shakiest number in the brief. A quick look at the data shows that doubling spend produces far less than double the sales, which is the one result that could change the owner's behavior; a two-week email A/B to the list costs nothing. The tempting deliverable is a content calendar instead.",tricky:["L", "V"],wrong:"Producing a content calendar and a newsletter template; never questioning the headline return-on-ad-spend claim; never segmenting the customers the scope asked about.",sector:"Men's clothing retail, e-commerce",
+ ask:"A focused e-commerce growth strategy: most valuable customer segments, channel prioritization, content and newsletter plan, ad calendar, acquisition and retention plan, cost–benefit of growth options, and growth scenarios.",
+ S:"Unusually, this scope states a baseline: a few thousand dollars a month in marketing that doubles in peak season, margins above 50%, a claimed high single-digit return per ad dollar, most sales in the fall, and a mailing list of a few thousand. The ask behind the ask: where does the next marketing dollar (and the owner's limited time) go?",
+ O:"New visitors convert; existing customers buy a second time; subscribers open, click, and buy. The owner is a one-person marketing department, so his own behavior (content time per week) is part of the system.",
+ L:"A revenue tree from Shopify: sessions × conversion × average order, split new versus returning, by channel and month. The headline return-on-ad-spend claim belongs at the top of the unknowns list.",
+ V:"'Additional ad spend returns more than it costs.' The data, showing that doubling spend month over month produces only about 10% more sales, already suggest diminishing returns; the cheapest next test is a two-week email A/B to the list, which costs nothing.",
+ E:"A recommendation with a dollar estimate per initiative and a monthly dashboard the owner can read in five minutes. Light adoption: one decision-maker.",
+ hook:"Shopify data plus a stated ROAS make this a strong analytics simulation: the designed discovery is that the headline ROAS is a blended average hiding seasonal and channel variation."},
+{name:"Summit Cycles – future mobility",year:2026,fam:"where",famLabel:"where next",depth:"brief",brief:"Trend research that SOLVE pulls back to a single buyer: the commuter who chose a throttle scooter over a bike, and whether she would choose a Summit-branded one at a Summit price. Brand transfer to a non-pedal category is the shakiest claim; a concept test with thirty recent scooter buyers is the cheapest evidence.",tricky:["O"],wrong:"A trend report with no buyer behavior in it, and brand transfer to a non-pedal category assumed.",sector:"Bicycle manufacturer",
+ ask:"Understand the emerging mobility landscape (e-bikes, throttle bikes, light motos, scooters), who buys them and why, pricing and channels, competitors, and which categories Summit should explore, with high-level financial projections.",
+ S:"Bottom line: revenue from categories outside the traditional bike portfolio. The ask behind the ask: is there a segment choosing a non-bike mobility product that would have bought a Summit if Summit made one?",
+ O:"A commuter or utility rider chooses an e-moped or throttle scooter over a bike; the question is whether that same rider would choose a Summit-branded version at a Summit price through a Summit channel.",
+ L:"A segment tree (use case × price band × channel) from market-share data and retailer interviews; a journey of the purchase decision for one or two segments.",
+ V:"'The Summit brand transfers to a non-pedal category.' Cheapest test: a concept test with thirty recent buyers of scooters and light motos, plus interviews with non-bike retailers.",
+ E:"A market overview and a category recommendation with a rough revenue case. Light adoption: a strategy input.",
+ hook:"Trend research that SOLVE pulls back to a single buyer behavior; good contrast with the omni-channel Summit scope."}
+];
+(function(){
+  const wrap=document.getElementById("cat-list"), count=document.getElementById('count');
+  const state={year:new Set(),fam:new Set(),tricky:new Set()};
+  function render(){
+    const rows=SCOPES.filter(s=>(!state.year.size||state.year.has(String(s.year)))&&(!state.fam.size||state.fam.has(s.fam))&&(!state.tricky.size||s.tricky.some(l=>state.tricky.has(l))));
+    wrap.innerHTML=rows.map(s=>`<details class="scope">
+<summary><span class="name">${s.name}</span><span class="tags"><span class="tag year">${s.year}</span><span class="tag">${s.famLabel}</span>${s.depth==="brief"?"":`<span class="tag deep">full read</span>`}<span class="tag tricky">tricky: ${s.tricky.join(" · ")}</span></span><span class="ask"><b>As written:</b> ${s.ask}</span></summary>
+<div class="body">${s.depth==='brief'?`<p class="briefread"><b>The SOLVE read.</b> ${s.brief}</p><div class="wrong"><b>Where teams go wrong.</b> ${s.wrong}</div>`:`<div class="five">
+<div class="cell-label">S</div><div class="cell"><b>Surface.</b> ${s.S}</div>
+<div class="cell-label">O</div><div class="cell"><b>Observe.</b> ${s.O}</div>
+<div class="cell-label">L</div><div class="cell"><b>Learn.</b> ${s.L}</div>
+<div class="cell-label">V</div><div class="cell"><b>Vet.</b> ${s.V}</div>
+<div class="cell-label">E</div><div class="cell"><b>Earn.</b> ${s.E}</div>
+</div><div class="wrong"><b>Where teams go wrong.</b> ${s.wrong}</div><div class="hook"><b>GB210 practice.</b> ${s.hook}</div>`}<div class="src">Sector: ${s.sector}</div></div></details>`).join('');
+    count.textContent=rows.length+' of '+SCOPES.length+' scopes';
+  }
+  document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+    const f=b.dataset.f,v=b.dataset.v; const on=b.getAttribute('aria-pressed')==='true';
+    b.setAttribute('aria-pressed',on?'false':'true'); on?state[f].delete(v):state[f].add(v); render();
+  }));
+  render();
+})();
+</script>
+<section id="walk">
+  <div class="eyebrow">Worked examples</div>
+  <h2>Six walkthroughs</h2>
+  <div class="prose"><p>These follow the shape of the teaching note: what students do at each question, what they should discover, where they predictably stall, and the coaching question that moves them. Each ends with a loop worth telling in class and a note on how the project would translate into a GB210 simulation. Numbers follow the source scopes but have been rounded or altered as part of the disguise; treat them as illustrative. The team paths described are composites of how capable teams tend to approach such projects, not records of any actual team.</p></div>
+
+<article class="walk" id="w-formic">
+  <header><div class="eyebrow">Build us the thing · 2025</div><h3>Kestrel Robotics</h3><div class="why">Chosen because it is the canonical pre-shaped build, and because the illustrative team loops and never says so.</div></header>
+  <p class="setup"><b>The setup.</b> Kestrel deploys robotic systems to manufacturers and maintains them. Parts and spare components are tracked through work orders and maintenance-tool reports; requisitions travel over Slack. A new ERP is going live. The finance team asks for a recommended inventory management system that tracks parts across statuses, integrates with a new ERP and its maintenance tool, supports barcode or mobile scanning, and comes with process documentation, requirements, a comparison of at least three vendors, a trial plan, and a roadmap.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem <span>What's the ask behind the ask?</span></h4>
+    <p>The ask is a system. The problem is that nobody can say where a given part is, so installs and repairs wait on parts that exist somewhere, purchases get duplicated, and Kestrel cannot prove what it returned from a decommissioned site. Students should restate the problem in those terms, attach a bottom line (repair and install turnaround, parts written off or billed back, technician hours spent hunting), and get the CFO to agree that a system is one candidate answer, not the question. The baseline is the current mess, measured: how many hours a week, how many dollars of unaccounted parts last quarter.</p>
+    <p>The predictable failure is accepting "compare three vendors" as the problem statement and spending the semester on a feature matrix.</p>
+    <p class="coach"><b>Coaching question:</b> If the perfect system were installed tomorrow and nobody logged anything, what would change?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior <span>Whose behavior has to change?</span></h4>
+    <p>The behavior is a technician or integrator logging a part at each handoff: when it arrives, when it is requisitioned, when it is installed, when it comes back. Today that happens late, inconsistently, or over Slack. Any solution, software or not, lives or dies on whether people in a hurry at a customer site take thirty seconds to scan or type. That makes field technicians the customer, and the CFO a sponsor.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers <span>What drives that behavior today?</span></h4>
+    <p>A journey map of a part through the system lifecycle. Imagine a team that does this well: six process maps covering acquisition from integrators (stocked and build-to-order), preventive and break-fix maintenance, in-place upgrades, and decommissioning, built from interviews. The blockers such a team finds are the right ones: systems logged into the maintenance tool too late, undocumented recurring parts, Slack-based requisition, dependency on one person, no verification step at decommission. SOLVE would add quantities to each blocker (how many parts, how many hours, how many dollars) so the branches can be ranked.</p>
+    <p class="coach"><b>Coaching question:</b> Which of these six maps carries the most money? Go deep there and leave the rest as sketches.</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim <span>What's the cheapest way to find out we're wrong?</span></h4>
+    <p>Serious options: (a) buy and integrate a dedicated inventory system; (b) enforce standardized touchpoints and a requisition form inside the tools Kestrel already has; (c) do (b) now and (a) when volume justifies it. For option (b), which is where that team lands: the rules must be codifiable as a checklist, technicians must comply in the field, and the existing tools must hold the data well enough to answer "where is part X." Shakiest: field compliance.</p>
+    <p>The cheapest test is an arrival-intake checklist at one integrator site for two weeks, with compliance counted and the first "where is it" question answered from the log instead of from the one person who knows. That test would also produce the number the CFO needs to decide whether to buy a system at all.</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes <span>What should Kestrel do Monday morning?</span></h4>
+    <p>Either a vendor recommendation that names the process changes it depends on, or the process changes alone with a stated trigger for when a system becomes worth buying. In both cases the argument is heavy on adoption: who owns each touchpoint, what happens when a tech skips a step, and what the first month of monitoring looks like. Value quantified in technician hours and parts dollars, with a range.</p>
+  </div></div>
+  <div class="loop"><b>The loop the team lives but does not narrate.</b> The scope asked for vendor rankings. The team discovers during mapping that the process is not ready for any vendor and re-scopes to five practical fixes. That is S reopened by L, which is the method working. But its final presentation never says "we were asked for X, here is why we are recommending Y first, and here is what we would need to see before X." A one-slide project log would have turned a silent deviation into the most credible moment of the presentation, and would have protected the team from a sponsor who still expected three vendors.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt from the Director of Finance: "we need a vendor comparison for an inventory system by week three." Client personas: the finance director (wants the comparison), an operations lead who, only when asked how a requisition actually happens, says "we Slack one guy," and a field technician who describes a repair visit where the part was somewhere but nobody knew where. Designed discovery: the integration requirement is premature because half the parts never enter any system. Students should leave with the scope renegotiated in writing with the finance persona, a quantified baseline (hours, parts dollars) pulled from the operations persona, and a designed two-week intake-checklist pilot they would propose to the sponsor.</div>
+</article>
+
+<article class="walk" id="w-snow">
+  <header><div class="eyebrow">Build us the thing · 2025</div><h3>CampusClear Snow</h3><div class="why">Chosen because the scope lists six builds and a team can easily rebuild the scope without a metric to steer by.</div></header>
+  <p class="setup"><b>The setup.</b> A student-run residential snow removal service at about ten universities, serving several hundred homeowners, with a mobile app and an admin dashboard built by the CTO. The founders list six asks: an in-app job workflow for shovelers, a dispatch notification approach, remote onboarding and training, a ratings system, a process to reconfirm that a shoveler still intends to work 24–48 hours ahead, and routing with backups at scale. Data offered: snowfall and refund history, pricing, before-and-after photos, shoveler testimonials, management feedback.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem</h4>
+    <p>Six asks, one bottom line: jobs completed on time per storm without a founder stepping in, and refunds avoided. The background says so directly ("time-intensive operational challenges"). Students should get the founders to state the baseline (what share of jobs need a manual intervention in a storm; the refund rate and its causes) and to rank the six. The commitment-confirmation ask is the one that most plausibly predicts the rest, and the ratings and onboarding asks are downstream of it.</p>
+    <p class="coach"><b>Coaching question:</b> In the last big storm, how many jobs needed a human to fix something, and what went wrong in each?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior</h4>
+    <p>A shoveler confirms 48 hours ahead and then shows up and finishes; a customer receives one clear notice and does not call. Confirmation reply rate and no-show rate are the leading indicators; refunds and founder hours per storm lag. Customers of this project include the student shovelers themselves, which is where adoption gets heavy: every design asks a college student to do something at 1:40 in the morning.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers</h4>
+    <p>A journey of one storm: forecast watched, routes built, shovelers notified, confirmations (or silence), travel, work, photos, customer notification, refund requests. The refund-by-weather data and the management feedback locate the blockers; interviews with shovelers explain why confirmation gets ignored (notification at 1:40 a.m., unclear expectations, no consequence). The predictable failure is designing screens for all six asks; the coaching move is to follow one storm end to end on one campus.</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim</h4>
+    <p>"We believe a 48-hour reconfirmation prompt with a visible consequence will raise show-up rate. We'll know when the reply rate exceeds X% and no-shows fall on the piloted campus relative to the others." Must-be-trues: shovelers see and answer the prompt, a backup can be assigned in time, the consequence is enforceable. Shakiest: that students reply at all. Cheapest test: a plain text-message reconfirmation on one campus for two storms, no app change, with the founders' manual process as the control. A team might propose an A/B test on recruiting channels, which shows the habit; the version above tests the behavior the scope actually asked about.</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes</h4>
+    <p>Workflow designs for the confirmation-and-dispatch path, the pilot results, and a rollout argument that makes the new path easier than ignoring it (one tap, a reason to reply, a consequence). Value in founder hours per storm and refunds avoided. The other four asks get a prioritized backlog with the reasons.</p>
+  </div></div>
+  <div class="loop"><b>The loop a team makes.</b> Picture a final presentation that shows an initial scope (the six asks) and a revised one (recruitment insights, struggling-campus support, website and SEO changes, app UX polish, notification timing). That is a re-scope, and some of it is well observed: the 1:40 a.m. email is a genuine finding. But a revision that is not tied to a metric or signed off as a restated problem reads as drift rather than method. SOLVE's house rule, document your loops, would have made the same work look like disciplined narrowing.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt: the six asks, from a founder who wants screens designed. Client personas: the founder, a CTO who wants a routing algorithm, and a customer-service lead who knows the no-show and refund problem by heart. Designed discovery: the refund data correlates with no-shows, not with snowfall, and the dispatch email went out at 1:40 a.m. Students should leave with the six asks ranked and agreed with the founder, one storm mapped end to end from the service lead's account, and a designed text-message reconfirmation pilot for one campus. A good simulation for teaching that six asks are a ranking exercise, not a to-do list.</div>
+</article>
+
+<article class="walk" id="w-sitka">
+  <header><div class="eyebrow">Why aren't they buying · 2026</div><h3>Tidewater Seafood Club</h3><div class="why">Chosen because the scope is already an O-question and the sponsor has named the uncertainty honestly.</div></header>
+  <p class="setup"><b>The setup.</b> A direct-to-consumer seafood subscription with a loyal base that skews old: roughly two-thirds of subscribers are over 55 and a large share over 65. Leadership wants 25-to-35-year-olds and suspects some mix of price, portion, lifestyle fit, and awareness, but says plainly that it does not know whether the problem is product fit or market fit. The deliverables asked for are an insight report, product concepts, a go-to-market plan, and a directional financial model. Data on offer: subscriber analytics, preference surveys, competitive analysis, sourcing criteria.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem <span>What's the ask behind the ask?</span></h4>
+    <p>The ask is clean, but there is still a restatement to earn. "Attract, convert, and retain 25–35-year-olds" is three behaviors and a values constraint. Students should pin the bottom line (new subscriber growth and lifetime value in that cohort), the baseline (how many current subscribers are under 35, and how long they last compared with the 55-plus base), and the constraint (no compromise on sourcing). They should also ask the question the scope dodges: is this cohort worth it? If a 30-year-old subscriber has half the lifetime value of a 65-year-old, the answer changes shape.</p>
+    <p class="coach"><b>Coaching question:</b> If this worked perfectly, how many under-35 subscribers would Tidewater have in twelve months, and how many does it have today?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior <span>Whose behavior has to change, measured how?</span></h4>
+    <p>The target behavior is a 25-to-35-year-old who cooks at home starting a subscription and still being subscribed at month four. Two leading indicators make it manageable: the trial-to-second-box rate (does the first box get cooked?) and the cost to acquire a trial. Students should resist stating the behavior as "younger people become aware of Tidewater." Awareness is not something you can watch someone do; placing a second order is.</p>
+    <p>The predictable failure here is building personas from generational trend reports. The scope's own framing ("limited budgets, misalignment with cooking habits, low awareness") is a list of hypotheses, and the data that can distinguish them is in Tidewater's subscriber analytics and churn records, not in a PwC study.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers <span>What drives that behavior today?</span></h4>
+    <p>This is a journey-map project. Students map how a 30-year-old buys fish now (grocery counter, frozen aisle, meal kit, restaurant, not at all) and mark boosters and blockers at each step: price per meal against a meal kit, portion and freezer space in a one-bedroom apartment, cooking confidence with whole fillets, and whether the sustainability story is even heard. The subscriber data then quantifies what it can: do the few under-35 subscribers churn faster, buy smaller boxes, skip more months? Ten interviews with non-subscribers in the cohort, and five with young subscribers who stayed, will do more than any survey.</p>
+    <p>What they should discover is that the blockers are not equally weighted, and that the first answer (price) is usually the one young people give and not the one that predicts purchase. The designed discovery in a simulation would be that portion and cooking confidence dominate once price is controlled.</p>
+    <p class="coach"><b>Coaching question:</b> Of the six barriers on your map, which one have you measured, and which ones are you assuming?</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim <span>What's the cheapest way to find out we're wrong?</span></h4>
+    <p>Serious options: (a) a smaller, cheaper box for one- and two-person households; (b) the current box with a recipe-and-video layer that removes the cooking barrier; (c) a lower-commitment entry (one-off trial box, gift box) with the same product. For option (a): "We believe a smaller box at a lower price will get 25–35-year-olds to start a subscription. We'll know we're right when a trial offer converts at X% of the rate the standard box converts for older buyers." Must-be-trues: a smaller box is profitable per unit, fulfillment can pack it, and the segment actually responds to price rather than to confidence. Shakiest: the last one.</p>
+    <p>The cheapest test is a landing page with the smaller box at its price and a targeted ad spend of a few hundred dollars, with clicks and pre-orders counted. A second test, a recipe bundle on the existing box offered to the same audience, distinguishes price from confidence. Both fit in three weeks and neither requires sourcing a new product.</p>
+    <p class="coach"><b>Coaching question:</b> If your first experiment takes a month, it isn't an experiment. What can you learn by Friday?</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes <span>What should Tidewater do Monday morning?</span></h4>
+    <p>A conclusion-first recommendation: the one offer to launch, the evidence from the test, the per-box profitability, and a twelve-month subscriber and lifetime-value estimate with a range. The adoption argument is for operations and sourcing, who must support a new SKU, and for whoever owns marketing spend, who is being asked to reallocate toward a cohort with lower near-term value. The measurement plan closes the loop opened in O: trial-to-second-box rate tracked weekly.</p>
+  </div></div>
+  <div class="loop"><b>A loop worth telling.</b> The team launches the small-box landing page and conversion is poor. Interviews with the people who clicked but did not buy reveal that they wanted the box but did not know what to do with a whole coho fillet. The team returns to L, re-weights the cooking-confidence blocker, and re-runs the test with a recipe card and a two-minute video. That second result, not the first, is the evidence the recommendation rests on. Both belong in the project log.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt from the co-owner: "young people aren't buying and we think it's price; tell us what to sell them." Client personas: the co-owner (holds the values constraint and the guess about price), an operations lead (holds subscriber analytics by age band and churn, shares them only when asked what data exists), and a lapsed 29-year-old trial subscriber who can describe what happened to her first box but cannot be shown a new one. Designed discovery: the under-35 subscribers who exist churn at the second box, and the lapsed subscriber never cooked the second fillet. Students should leave with a restated problem the owner agrees to, a target behavior with a leading indicator, and a written design for the landing-page test they would run in GB410.</div>
+</article>
+
+<article class="walk" id="w-medsense">
+  <header><div class="eyebrow">Why aren't they buying · grab bag · 2025</div><h3>Quietcue Health</h3><div class="why">Chosen because it is three projects in one scope, and because the illustrative team's narrowing move is instructive in both directions.</div></header>
+  <p class="setup"><b>The setup.</b> A discreet sensor that helps patients stay on their medications, billed to Medicare through about a few dozen pharmacy clients. Seniors resist enrollment ("defensive, defiance, and denial") and outreach depends on cold calls. The founder cites a very large market opportunity and asks for three things: how seniors make health purchase decisions and which channels work; which new markets (tribal communities, federally qualified health centers, caregiver networks, consumer) to enter and how to differentiate; and what else the sensor could be used for and who would pay. Deliverables span personas, outreach strategies, cost-benefit by market, and new-application feasibility.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem</h4>
+    <p>The grab bag has one bottom line under it: enrolled, monitored patients per month, because each one bills. Baseline: a few dozen pharmacies, a conversion rate from cold call to enrollment the sponsor can produce, and a persistence rate after that. The S-work is negotiating the three asks down to the one that moves enrollments fastest, and writing down what was set aside and why. Growth in new markets, new applications, and better senior marketing are three different hypotheses about why enrollments are low; students should name which one they are testing.</p>
+    <p class="coach"><b>Coaching question:</b> Of your three asks, which one, if it worked, adds the most enrolled patients in the next year?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior</h4>
+    <p>Two behaviors: a senior says yes to enrollment and keeps the sensor in use past ninety days; a pharmacist makes the introduction instead of leaving it to a cold call from a stranger. The second is probably the leading indicator for the first, and it is a behavior of a partner, not a customer. Students who write "increase senior adoption" have named a bottom line, not a behavior.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers</h4>
+    <p>A funnel and a journey: pharmacist referral, outreach call, consent, install, persistence. The sponsor's adoption data should show where it leaks. Interviews with pharmacists and with a few enrolled and refused seniors (or their adult children) put the reasons on the map: who called, what was said, whether a trusted person vouched for it. The "defensive, defiance, denial" line in the scope is a symptom; the map should show what triggers it.</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim</h4>
+    <p>Suppose the team chooses the market-expansion ask and concludes that tribal pharmacies are the best fit, on the grounds of chronic-disease prevalence, localized decision-making, federally protected reimbursement, and no change to the business model. As a claim: "We believe entering tribal pharmacies will grow enrolled patients faster than deepening existing pharmacies. We'll know we're right when a 90-day pilot in named pharmacies enrolls patients at a higher rate per pharmacy than the current base." Must-be-trues: the pharmacies sign; the seniors there resist less (or the pharmacist relationship overcomes it); billing works as described. The team's evidence covers the first and third with market statistics; the shakiest condition, that the senior adoption problem is smaller in the new channel, is asserted from "community trust," not tested. The cheapest test is the outreach pilot the team proposes, with enrollments counted rather than meetings.</p>
+    <p class="coach"><b>Coaching question:</b> You have shown the market is large and the billing works. What evidence do you have that seniors there say yes more often?</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes</h4>
+    <p>A recommendation with the pilot, a quantified enrollment estimate with a range, a measurement plan (enrollments per pharmacy per month, 90-day persistence), and an explicit statement of what was descoped. Adoption burden is moderate and sits with the sponsor's outreach staff and partner pharmacists.</p>
+  </div></div>
+  <div class="loop"><b>A loop worth telling.</b> That team's executive summary is strong SOLVE practice: one problem statement, three options compared on named criteria, one recommendation, a 90-day proposal, an email template. Where SOLVE would have pushed: the behavior that made the original outreach hard was swapped for a channel that sounded easier, without evidence that the behavior changes. A single week of calls to two of the named pharmacies would have either confirmed the claim or sent the team back to L with better information.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt: the grab bag itself, delivered by a founder who leads with the market size. Client personas: the founder, an outreach staffer who knows the call-to-enrollment rate and what seniors actually say, a partner pharmacist who explains why she does not make the introduction herself, and possibly an adult daughter of a patient who can describe what finally made her mother agree. Designed discovery: the funnel leaks at the first call, not at awareness, and the pharmacist's referral is the missing behavior. Students should leave with a descoping memo the founder has accepted, the funnel quantified, and a designed 90-day outreach pilot with enrollments, not meetings, as the endpoint.</div>
+</article>
+
+<article class="walk" id="w-forage">
+  <header><div class="eyebrow">Feasibility · 2026</div><h3>Greenfork Kitchens: the commissary question</h3><div class="why">Chosen because it is the purest analytical-evidence project in the set, with a cheap behavioral test hiding inside it.</div></header>
+  <p class="setup"><b>The setup.</b> About ten fast-casual locations across the state, a tenth opening soon. Leadership has discussed a commissary kitchen for years and never had time to evaluate it. The scope asks for a structured feasibility assessment: centralized versus hybrid, what to centralize, co-located versus separate, logistics, quality and risk, startup and operating cost, savings, break-even, sensitivity to store count, and implications for real estate. Data: P&Ls, product mix, recipe costing, equipment costs, rent, labor grids, bulk-pricing savings.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem</h4>
+    <p>The scope is a concept looking for a verdict, and the S-work is to name what the verdict is for. Three candidate bottom lines hide in the background paragraph: cost per plate (food and labor), consistency across stores, and the ability to open stores faster and in smaller footprints. They are not the same project. A commissary that saves 2% of food cost but lets the next five stores open with half the kitchen is a real-estate strategy, not a cost program. Students should get the owner to rank them and to state the baseline per-store labor and food cost from the P&Ls.</p>
+    <p class="coach"><b>Coaching question:</b> If the commissary works, which line on the store P&L changes first, and by how much would it have to change to be worth the trouble?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior</h4>
+    <p>Feasibility projects feel behavior-free, and they are not. Store kitchens must stop making the centralized items; store managers must accept product they did not make; prep staff hours must actually come out of the schedule rather than drifting into other tasks; a driver must deliver on a schedule that holds in a February. The leading indicator is prep hours per store actually removed. The lagging one is food and labor cost per plate.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers</h4>
+    <p>An issue tree, built from recipe costing: for each prep process, labor minutes per batch, ingredient cost, waste, and how often it is made, across nine stores. That ranks what is worth centralizing (high labor, high volume, travels well) versus what must stay in store (finished to order, quality-sensitive). The savings side is labor consolidation plus bulk purchasing; the cost side is facility, equipment, transport, packaging, and the quality risk the owner cares about most. The predictable failure is modeling the whole menu; the coaching move is to pick the five processes that carry most of the prep labor.</p>
+    <p class="coach"><b>Coaching question:</b> Which five prep items account for most of the labor minutes across all nine stores?</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim</h4>
+    <p>Options: (a) a separate central facility; (b) a hub store with extra capacity serving its neighbors; (c) no commissary, but a bulk-purchasing cooperative and standardized recipes. For option (b), usually the leading one at nine stores: savings survive transport cost, quality holds through a day of refrigerated travel, and managers accept it. Shakiest: quality-plus-acceptance, because it is the one the owner will not trade away.</p>
+    <p>Analytical evidence: the model with sensitivity on store count and transport cost, asked as "does the answer flip?" (at how many stores does a separate facility beat a hub store; at what diesel price does the hub stop paying). Behavioral evidence, cheap: make one high-volume prep item in one store and deliver it to three others for two weeks, track cost and ask managers and staff blind whether they can tell. Outcome evidence comes only after a decision, so the recommendation should build it in.</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes</h4>
+    <p>A conditional recommendation: pursue the hub model when the store count crosses N or when the next lease is signed in a given region, with the sensitivity table showing why, a pilot design, and an adoption plan for store managers who will feel the change as a loss of control. Value stated as cost per plate and stores-openable-per-year, with ranges.</p>
+  </div></div>
+  <div class="loop"><b>A loop worth telling.</b> The two-week pilot shows the savings hold but one item arrives noticeably worse. Instead of killing the concept, the team returns to L and splits the process: centralize the labor-heavy step, finish the quality-sensitive step in store. The hybrid that results is the recommendation, and it only exists because the test failed in the cheap version first.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt from the owner: "we've talked about a commissary for years; tell us if we should do it." Client personas: the owner (cares about quality above all, has not ranked cost against expansion), a finance lead who holds store P&Ls and recipe costing, and a store manager who does not want to become a reheating station. Designed discovery in the data: a handful of prep items carry most of the labor minutes, and transport cost, not facility cost, is the sensitive variable. Students should leave with the bottom line ranked by the owner, a sensitivity model built on the data, and a designed one-item, three-store pilot as the first step in their recommendation.</div>
+</article>
+
+<article class="walk" id="w-betterlife">
+  <header><div class="eyebrow">Feasibility · 2025</div><h3>Prairie Mutual Life</h3><div class="why">Chosen because the bottom line is a mission metric and the adoption burden is on an agent force, two things students rarely anticipate.</div></header>
+  <p class="setup"><b>The setup.</b> A member-owned, not-for-profit life insurer serving small towns, with an aspirational vision of closing the rural health and longevity gap. The COO asks for a non-insurance product roadmap: one to three concepts and a top recommendation, a five-year financial case, an execution plan, a launch marketing plan, and a change-management plan for employees and agents. Data: member research and an anonymized 5,000-member sample.</p>
+
+  <div class="wq"><div class="letter">S</div><div>
+    <h4>Surface the real problem</h4>
+    <p>Two bottom lines compete in the scope, and the team has to make the COO choose the weighting: health and longevity impact on members (the vision) and economic workability (the constraint). "Economically workable" for a member-owned nonprofit might mean break-even, not profit; that single clarification changes which concepts survive. Baseline: members currently have insurance products plus a handful of benefits, including a wellness app that is underused.</p>
+    <p class="coach"><b>Coaching question:</b> If this product breaks even and measurably improves members' health, is that a success? If it profits and nobody's health changes?</p>
+  </div></div>
+  <div class="wq"><div class="letter">O</div><div>
+    <h4>Observe the behavior</h4>
+    <p>The member behavior is sustained use of a health product (monthly active use, sessions completed), not purchase. The second behavior is the one students miss: a commission-paid agent brings the product up in a life-insurance conversation. A team on this path might note on its change-management slide that agents are not incentivized to sell the kit, and that a small share of agents produce most sales. That is an O-question insight sitting in an appendix.</p>
+  </div></div>
+  <div class="wq"><div class="letter">L</div><div>
+    <h4>Learn the drivers</h4>
+    <p>A tree first: which part of the health gap (chronic disease management, provider access, isolation, physical activity) is largest for this member base, using the 5,000-member sample and public rural health data. Then a journey for the leading gap: what a 58-year-old member in a town of 3,000 does today about blood pressure or exercise, and what stops her. Three plausible concepts (traveling nurses, remote patient monitoring, a home fitness kit with an improved app) map to different branches; the tree is what should have ranked them, rather than a scoring matrix built before the drivers were known.</p>
+  </div></div>
+  <div class="wq"><div class="letter">V</div><div>
+    <h4>Vet the shakiest claim</h4>
+    <p>For the recommended Home Kit plus app: "We believe a kit priced around $60 paired with senior-focused workout videos will get members exercising regularly. We'll know when pilot participants log 15-plus activities a month at a rate of X%." Must-be-trues: members buy at $60, they use it past the first month, agents sell it, the supplier price holds. Suppose the team assumes a 3% adoption rate to reach break-even (a few thousand kits a year against the member base) and a five-year profit in the low five figures on similar fixed cost. Shakiest: sustained use, then agent selling. The team proposes the right cheap test, an email opt-in to members 45–65 with free kits to volunteers and usage tracked, and stops at proposing it.</p>
+    <p class="coach"><b>Coaching question:</b> Your whole model rests on 3%. Where did that number come from, and what would you do differently if it were 1%?</p>
+  </div></div>
+  <div class="wq"><div class="letter">E</div><div>
+    <h4>Earn the yes</h4>
+    <p>A recommendation that states value in both currencies: a health-behavior metric (members active per month) and the economics (break-even at N kits). The adoption argument has two audiences, agents and members, and a sweepstakes idea is a reasonable member-side mechanism. The measurement plan is the pilot itself, specified so the COO can run it in a quarter.</p>
+  </div></div>
+  <div class="loop"><b>A loop worth telling.</b> Suppose the email pilot returns strong sign-ups and weak month-two usage. The team returns to L and finds that the members who kept going were the ones in the sweepstakes or with a buddy. The product becomes a program (kit plus monthly challenge plus community), and the five-year model gets rebuilt around participation rather than kit sales. The financials get smaller and the mission case gets much stronger, which for this sponsor is the right direction.</div>
+  <div class="sim"><b>As a GB210 simulation.</b> Opening prompt from the COO: the vision statement and "bring us a product." Client personas: the COO (will not volunteer what "economically workable" means until asked), a product or actuarial lead who holds the member sample and the wellness app's usage numbers, a sales manager who can say what agents are paid on and what they will and will not bring up in a policy conversation, and a member in her late fifties who downloaded the app once and can say why she stopped. Designed discovery: a mission bottom line and a profit bottom line that point at different concepts, forcing the S-question, plus the agent-incentive problem hiding in the sales manager's answers. Students should leave with the COO's weighting of the two bottom lines, both behaviors named, and a designed member opt-in pilot.</div>
+</article>
+</section>
+<section id="tricky">
+  <div class="eyebrow">Where students go wrong</div>
+  <h2>Where the tricky parts live, letter by letter</h2>
+  <div class="prose"><p>Reading the 21 scopes against how teams typically approach them, the failures cluster by letter, and the clusters are predictable enough to design practice around. Each row below names the pattern, the scopes most prone to it, and how it typically shows up in a final presentation.</p></div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Letter</th><th>The tricky part</th><th>Most prone</th><th>How it typically shows up</th></tr></thead>
+    <tbody>
+      <tr><td>S</td><td>The ask arrives as a deliverable list, a named solution, or three asks in one. Teams accept it as written, or re-scope on their own without the sponsor's agreement and without a baseline.</td><td>Kestrel, CampusClear Snow, Quietcue, Meridian, Ledgerline, Nimbus Pediatric Imaging, Greenfork</td><td>Teams routinely change the scope and rarely narrate it: the Kestrel path drops the vendor comparison, the CampusClear Snow path rebuilds its scope, the Quietcue path keeps one ask of three. Final presentations rarely state a baseline the team asked for.</td></tr>
+      <tr><td>O</td><td>A bottom line ("grow Gen Z," "increase adoption," "improve engagement") is written where a behavior belongs. Without a behavior there is no leading indicator and nothing to test.</td><td>Northway, Tidewater, PVL, Collegiate Housing Partners, Ledgerline, Summit mobility, CROL</td><td>The Northway path recommends benefits to add with no sign-up behavior or number. The Quietcue path swaps the hard behavior (a senior saying yes) for an easier-sounding channel.</td></tr>
+      <tr><td>L</td><td>Structure is built from outside sources rather than discovered: personas from trend reports, rankings from generic criteria, a scoring matrix before the drivers are known. Or the opposite: the whole menu gets modeled.</td><td>Tidewater, Little Sprouts, Harbor & Oak, Ridgeline, Greenfork, PVL</td><td>The Prairie Mutual Life path scores three concepts before mapping the health gap. The Harbor & Oak path never segments customers. Kestrel's six process maps are the L done well.</td></tr>
+      <tr><td>V</td><td>The shakiest claim is never named, so it is never tested. Market statistics stand in for behavioral evidence; a pilot is designed and then presented instead of run.</td><td>Prairie Mutual Life, Lakeshore, Quietcue, Northway, Harbor & Oak, BuildForward, Ridgeline, Nimbus Pediatric Imaging</td><td>The commonest pattern: a pilot is proposed and never run. Prairie Mutual Life's model rests on an untested 3%. Lakeshore's survey goes out without a price. Quietcue's evidence for tribal pharmacies is market size, not behavior.</td></tr>
+      <tr><td>E</td><td>The deck narrates the work instead of arguing the conclusion; value is in adjectives; the people who would have to change are never addressed; sizing drifts into strategy.</td><td>Prairie Commons Health, Summit omni-channel, CROL, BuildForward</td><td>The Prairie Commons Health path delivers strategy where numbers were asked for. Quietcue's executive summary is the E done well: claim, options, recommendation, next step.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><p><strong>The common thread.</strong> S and V are where teams lose the most, and they fail together: a team that never got the sponsor to agree on a restated problem with a baseline has nothing to test, so V collapses into research. O is the letter most often skipped entirely, which is why the framework promotes it to its own question.</p></div>
+</section>
+
+<section id="decks">
+  <div class="eyebrow">Illustration</div>
+  <h2>How a team might approach it, read through SOLVE</h2>
+  <div class="prose"><p>For eight of the cases, here is a path a capable team could plausibly take, sketched as a composite of how past teams have tended to approach such projects, and read against the five questions. The point is not to grade anyone; it is to see concretely where a semester of capable students goes without the framework, because those are the places GB210 has to prepare them for. The same pattern appears in almost every path: a strong L, a missing baseline in S, a bottom line where a behavior should be in O, a pilot proposed rather than run in V, and an E that narrates rather than argues.</p></div>
+  <div class="crit">
+    <div class="c"><h4>Kestrel <small>five practical fixes from six process maps</small></h4><dl>
+      <dt>A plausible path</dt><dd>Six lifecycle process maps from interviews, a crisp pain-point synthesis (visibility gaps, ownership ambiguity, process fragility), and five process recommendations with day-in-the-life examples. No vendor comparison, requirements, trial plan, or roadmap.</dd>
+      <dt>Where it's strong</dt><dd class="good">L was excellent. The team discovered the structure of the problem and let it override the pre-shaped ask. Recommendation 1 (log systems on arrival) is the right first move.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The loop from "pick a system" to "fix the process" is never narrated or signed off. Nothing is quantified: no hours, no dollars of parts, no baseline. None of the five fixes was piloted, though the intake checklist could have been tested in two weeks. Adoption by field technicians is asserted, not argued.</dd>
+    </dl></div>
+    <div class="c"><h4>Lakeshore Community Church <small>tiered rental pricing and a multi-tenant concept</small></h4><dl>
+      <dt>A plausible path</dt><dd>Outreach to about a hundred organizations (roughly one in eight replied), a local rental benchmark (current rent a small fraction of market), a utility cost floor of a few cents per square foot, three pricing tiers, a physical-separation model, and a multi-tenant layout concept.</dd>
+      <dt>Where it's strong</dt><dd class="good">A real baseline and a quantified cost floor. The team also finds something the scope did not anticipate (demand is for occasional hourly use, not long leases) and adjusts the recommendation, which is a genuine O-loop.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The survey asked about needs, not price, so the tiers are never tested against anyone's willingness to pay. The daycare rate recommendation, explicitly requested, is implied rather than stated. The modification cost estimate is absent. A handful of replies is a thin base for a pricing framework; a concrete offer to the three most-aligned respondents would been stronger evidence than the benchmark.</dd>
+    </dl></div>
+    <div class="c"><h4>CampusClear Snow <small>recruitment, SEO, UX polish, notification timing</small></h4><dl>
+      <dt>A plausible path</dt><dd>A revised scope (recruiting legitimacy, struggling campuses, website SEO, app UX edits, notification procedure), an A/B test design for recruiting channels, detailed screen-level UX critiques, and the observation that a dispatch email goes out at 1:40 a.m.</dd>
+      <dt>Where it's strong</dt><dd class="good">The hypothesis habit is present: "more legitimate acquisition leads to more dedicated employees" is written as a testable claim with two arms and an end-of-season comparison.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The re-scope has no bottom line attached, so it is hard to tell whether SEO for struggling campuses matters more than the commitment-confirmation problem the founders listed. Five of six original asks are unaddressed without an explanation. The UX edits (font sizes, button colors) are build-level output with no behavior they are meant to change.</dd>
+    </dl></div>
+    <div class="c"><h4>Quietcue <small>tribal pharmacies as the expansion market</small></h4><dl>
+      <dt>A plausible path</dt><dd>A one-slide executive summary, a three-market comparison (tribal pharmacies, FQHCs, the VA) on fit, workflow, reimbursement, and adoption speed, a named list of seven target pharmacies, a 90-day pilot proposal, and an outreach email template.</dd>
+      <dt>Where it's strong</dt><dd class="good">Best S and E of the set: one problem statement ("expand with the least change to the model"), options compared on named criteria, conclusion first, a next step the sponsor can take on Monday.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The behavior that made the original business hard (seniors refusing) is replaced by a channel argument without evidence that refusal is lower in the new channel. Market statistics stands in for behavioral evidence. Two of the three original asks are dropped silently. The pilot is proposed, not started.</dd>
+    </dl></div>
+    <div class="c"><h4>Prairie Commons Health <small>a disruption strategy and three counties</small></h4><dl>
+      <dt>A plausible path</dt><dd>A market-landscape reading (three carriers dominate commercial coverage; competitors ignore rural leakage), a four-part strategy (micro-networks, leakage analytics, rapid employer plan design, local-first navigation), three recommended counties with their largest employers, a risk matrix, and a town-hall-and-incentives entry plan.</dd>
+      <dt>Where it's strong</dt><dd class="good">The "where competitors are not engaged" framing is a real insight, and the risk table names the right must-be-trues (hospital alignment, employer adoption, member engagement).</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The scope asks for numbers: total addressable market, market-share estimates, payer mix, competitor share by county. Aggregate percentages appear without a clear denominator. The strategy content drifts into the sponsor's domain (plan design) and away from the sizing the sponsor needed. The three counties are justified qualitatively; the sizing tree that would ranked all candidates is missing.</dd>
+    </dl></div>
+    <div class="c"><h4>Prairie Mutual Life <small>Home Kit plus an improved app</small></h4><dl>
+      <dt>A plausible path</dt><dd>Three concepts (traveling nurses, remote patient monitoring, home fitness kit with app improvements), a scoring matrix, a break-even model (a few thousand kits a year at 3% adoption, break-even in year three, a five-year profit in the low five figures), a five-month pilot plan, a sweepstakes marketing mechanism, and a change-management slide naming agent incentives.</dd>
+      <dt>Where it's strong</dt><dd class="good">The pilot plan is specific (email opt-in, free kits, usage and pain-trend tracking) and the change-management slide correctly spots that agents are the adoption risk.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The value case is tiny in dollars and absent in health terms, which is the metric the sponsor's vision names. The 3% adoption assumption, the whole model, is untested and unsourced. The scoring matrix is built before the drivers were understood. The pilot could start in October; instead it stays a recommendation.</dd>
+    </dl></div>
+    <div class="c"><h4>Harbor & Oak <small>a social calendar and a newsletter plan</small></h4><dl>
+      <dt>A plausible path</dt><dd>Ninety-day Shopify headline metrics, a social media strategy (platforms, content pillars, posting frequency, target conversion and click rates), a newsletter plan, and growth projections with the observation that doubling marketing spend for a peak month yielded about 10% more sales.</dd>
+      <dt>Where it's strong</dt><dd class="good">The diminishing-returns finding is the one analytical result that could change the owner's spending, and the team states it plainly.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">The scope asked who the most valuable customers are, how to prioritize channels by return, and what the financial impact of growth options is. Such a deck answers none directly. The return-on-ad-spend figure in the scope, the shakiest number in the brief, is never examined. A two-week email test to the mailing list would cost nothing and produced the only behavioral evidence in the project.</dd>
+    </dl></div>
+    <div class="c"><h4>Northway Motor Club <small>Gen Z benefits and a Student Pass</small></h4><dl>
+      <dt>A plausible path</dt><dd>A problem statement with a real baseline (Gen Z at roughly 1% of member households), Gen Z trend research, three benefit recommendations (study apps, streaming, fitness), a Student Pass bundle concept, website and digital-wallet ideas, and a student survey.</dd>
+      <dt>Where it's strong</dt><dd class="good">The baseline slide is exactly what S asks for, and the Student Pass concept is a coherent option with a stated value proposition and sign-up flow.</dd>
+      <dt>Where SOLVE pushes</dt><dd class="gap">No behavior is named and no number is projected: how many students would sign up, at what price, and would they renew? The scope invited a pilot of one marketing idea; the team ran a survey with no purchase prompt instead. Evidence is third-party trend statistics throughout. The recommendations are benefits to add, with no estimate of cost to Northway or value per member.</dd>
+    </dl></div>
+  </div>
+</section>
+
+<section id="gb410">
+  <div class="eyebrow">Implications</div>
+  <h2>For people coaching GB410 projects</h2>
+  <div class="prose">
+    <p><strong>Make the restated scope a graded deliverable in week two.</strong> Teams routinely change the scope and rarely document it. A one-page restatement (bottom line, baseline, target behavior, what is in and out, sponsor sign-off) turns silent drift into visible method and protects teams from a sponsor who still expects the original list. It also forces the grab-bag negotiation (Quietcue, CampusClear Snow, Meridian, Ridgeline, Northway) to happen early, with the sponsor in the room.</p>
+    <p><strong>Ask for a baseline before any analysis.</strong> Only two 2026 scopes state one. The coaching question "compared to what?" applied in the first sponsor meeting would have given Kestrel its hours and dollars, CampusClear Snow its intervention rate, and Prairie Mutual Life its app usage. Without the baseline, value cannot be quantified at the end, and final presentations show the consequence.</p>
+    <p><strong>Expect a pilot, not a pilot plan.</strong> Teams regularly design a cheap test and stop there. The semester calendar allows a two-to-three-week behavioral test in October if the team reaches V by week seven. Several sponsors invite it in the scope itself. Treat "we proposed a pilot" as a V that was not finished.</p>
+    <p><strong>Watch for the channel swap.</strong> When the target behavior is hard (seniors refusing, owners not switching managers, parents not re-buying), teams drift toward a different audience where the behavior is assumed to be easier. Sometimes that is right; it needs evidence either way.</p>
+    <p><strong>Put the adoption argument on the rubric.</strong> Kestrel's technicians, Prairie Mutual Life's agents, CROL's program directors, Summit's independent dealers: in each case the answer dies if a group the sponsor does not control declines to change. Teams should name that group in week two and interview it before the final presentation.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Where teams stall</th><th>SOLVE question</th><th>Cheapest fix</th></tr></thead>
+    <tbody>
+      <tr><td>Scope changed without telling anyone</td><td>S</td><td>Signed restatement by week two; a project-log slide in the final deck</td></tr>
+      <tr><td>No baseline, so no quantified value</td><td>S</td><td>"Compared to what?" in meeting one; a baseline number on the restatement</td></tr>
+      <tr><td>Bottom line written where a behavior belongs</td><td>O</td><td>The three behavior questions, answered in writing, with a leading indicator</td></tr>
+      <tr><td>Market statistics used as evidence about people</td><td>V</td><td>Interviews and one cheap behavioral test before the recommendation</td></tr>
+      <tr><td>Pilot proposed, not run</td><td>V</td><td>Reach V by week seven; run the test in October</td></tr>
+      <tr><td>Deck narrates activity</td><td>E</td><td>Conclusion-first structure; value in dollars and days; adoption and measurement plans</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="gb210">
+  <div class="eyebrow">Practice</div>
+  <h2>Simulation experiences in GB210 that train these moments</h2>
+  <div class="prose">
+    <p>A GB210 simulation is a set of conversations with the client, not with the market. Students get a short opening prompt that is vague or quietly misleading, then talk with the people who hired them: the sponsor who wrote the ask, the colleagues who hold the data, the stakeholders whose objectives and preferences shape what a good answer is. A sample customer may be in the room to describe the status quo, but nobody in the simulation can try a new product or respond to an offer. That makes the simulation the right place to practice S, O, L, the stakeholder-pressure-test half of V, and E as persuasion, and to practice <em>designing</em> the cheap test that GB410 will run. Below, one experience per tricky moment, each drawn from a scope in the catalog.</p>
+  </div>
+  <div class="practice">
+    <div class="px"><div class="pl">S</div><div>
+      <h4>The grab-bag opening</h4>
+      <p>The prompt is three loosely related asks (Quietcue: seniors, new markets, new uses; CampusClear Snow: six app features). The founder persona is enthusiastic about all of them and leads with a market size. A second persona (an outreach staffer, a customer-service lead) knows which one actually hurts. Students must come back to the founder with a ranked, restated scope and get agreement on it, in the conversation. The graded artifact is the restatement the founder persona accepted, with a baseline number the team extracted.</p>
+      <h4>The named solution</h4>
+      <p>The prompt is "compare three inventory systems" (Kestrel) or "redesign our homepage" (Ledgerline). The person who wrote the prompt wants the named thing. An operations persona reveals, only when asked how work actually happens, that the process is not ready for any system. The lesson is not to ignore the sponsor; it is to renegotiate with the sponsor persona explicitly, which students find much harder than quietly changing course.</p>
+    </div></div>
+    <div class="px"><div class="pl">O</div><div>
+      <h4>The bottom line in disguise</h4>
+      <p>The sponsor persona states the goal as a bottom line ("we need more Gen Z members," "younger people aren't buying our fish") and has a theory about the cause (price, old-fashioned benefits). A status-quo customer persona, a lapsed trial subscriber or a 24-year-old who has never considered joining, can describe what she does today and what happened last time, but cannot react to a concept. Students must leave with a target behavior statement: who, doing what differently, measured how, from what baseline. Teams that write "increase awareness" should hear the coaching question from the persona herself: "what would you watch me do?"</p>
+      <h4>The second behavior</h4>
+      <p>In Prairie Mutual Life's shape, a sales manager persona can say what agents are paid on and what they will not bring up in a policy conversation. In Kestrel's, a field technician describes a repair visit. The discovery is that the sponsor's plan depends on a behavior of the sponsor's own people, and that nobody has asked them.</p>
+    </div></div>
+    <div class="px"><div class="pl">L</div><div>
+      <h4>The data you have to ask for</h4>
+      <p>Every simulation should have one persona who holds the baseline and the structure-revealing data (subscriber churn by age band, refund history by storm, store P&Ls and recipe costing, call-to-enrollment rates) and releases it only when asked what data exists. The designed discovery lives in that data: refunds track no-shows rather than snowfall (CampusClear Snow); a handful of prep items carry most of the labor (Greenfork); the few young subscribers churn at the second box (Tidewater). Teams that build from trend reports instead should find their structure contradicted by a persona late in the sim.</p>
+      <h4>Too much structure</h4>
+      <p>The Greenfork-shaped sim can also punish the opposite failure: a finance persona who will happily hand over every recipe, so that the team has to choose the five processes that matter rather than model the menu.</p>
+    </div></div>
+    <div class="px"><div class="pl">V</div><div>
+      <h4>The skeptical stakeholder</h4>
+      <p>Evidence inside the simulation is analytical (the data) and stakeholder-behavioral: does the recommendation survive the person it affects most? A store manager who does not want to reheat food, a sales manager whose agents are paid on policies, a program director with her own newsletter. Scripted to push back on any recommendation that has not accounted for their constraints, in the way Lakeside's VP of Sales pressure-tests the board deck. This is the adoption argument, practiced.</p>
+      <h4>The test you design but do not run</h4>
+      <p>Outcome and customer-behavioral evidence are out of reach in the sim, exactly as they are for GB410 teams in the field. So the sim should require the test design as a deliverable: the claim in the two-part template, the must-be-trues ranked, the cheapest test with its endpoint named (enrollments, not meetings; pre-orders, not survey interest). The Little Sprouts shape is a good drill: the founders hold a home-market P&L, and the team must specify the ten phone calls it would make in the top city and what answer would kill the ranking.</p>
+    </div></div>
+    <div class="px"><div class="pl">E</div><div>
+      <h4>The final conversation</h4>
+      <p>The closing session is a conversation with two or three personas whose priorities conflict (the CFO and the operations lead; the COO and the sales manager), not a presentation to an empty room. Conclusion first, value in dollars and days, the descoped asks named and explained, the measurement plan stated. A team that narrates its semester should be interrupted by the sponsor persona asking "so what do I do Monday?"</p>
+      <h4>The project log</h4>
+      <p>Every simulation should contain at least one moment where what a persona says sends the team back a question. The rubric should reward the written record of it. Teams loop all the time and hide it, because nobody has taught them that revising is the method.</p>
+    </div></div>
+  </div>
+  <div class="callout build"><p><strong>Candidate seeds from this set, by family.</strong> Why aren't they buying: Tidewater (cleanest O-question), Northway (baseline provided). Where next: Little Sprouts (home-market P&amp;L to mine), Collegiate Housing Partners (three markets, one owner behavior). Feasibility: Greenfork (recipe-cost dataset), Prairie Mutual Life (two bottom lines). Build us the thing: Kestrel (canonical), CampusClear Snow (six asks, three personas who disagree). Pricing special case: BuildForward (rate history and a mission constraint). Any of these can be anonymized into a fictional sponsor in the style of Flashion or Lakeside.</p></div>
+</section>
+
+
+<p class="src">Based on: the GB410 project request forms of 2025 and 2026 (disguised), the SOLVE framework pages, and the instructor teaching note. Team paths are composites.</p>
+</div></main>
+<footer><div class="container footgrid">
+  <div>GB210 · AI-Enabled Business Solutions Lab · Wisconsin School of Business</div>
+  <div><a href="about.html">Sources &amp; credits</a> · Companion: <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding for Business School Students</a></div>
+</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor');syncInstructorLinks()}
+function syncInstructorLinks(){var on=document.body.classList.contains('instructor');
+document.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href')||'';
+if(/^[a-z-]+\.html(\?.*)?$/.test(h)){a.setAttribute('href',on?h.split('?')[0]+'?instructor=1':h.split('?')[0])}})}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor');syncInstructorLinks()}
+</script>
+</body>
+</html>
