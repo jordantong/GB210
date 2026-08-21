@@ -1,6 +1,6 @@
-# GB210 · Business Solutions
+# GB210 · AI-Enabled Business Solutions Lab
 
-Companion website for GB210 (Business Solutions), Wisconsin School of Business,
+Companion website for GB210 (AI-Enabled Business Solutions Lab), Wisconsin School of Business,
 University of Wisconsin–Madison. Plain HTML, no build step, no dependencies.
 
 ## How the course fits together
@@ -11,7 +11,7 @@ University of Wisconsin–Madison. Plain HTML, no build step, no dependencies.
   ecosystem; the schedule is the connective tissue that links each week into
   the resources below.
 - **Two “textbooks,” both webpages:**
-  - `solve/` — *The Five Questions* (SOLVE framework), written by Jordan,
+  - `solve/` — *The SOLVE Framework*, written by Jordan,
     hosted in this repo.
   - [Vibecoding for Business School Students](https://vibecoding-website-alpha.vercel.app/)
     — written by Xiaoyang, hosted externally. Link to it; don’t mirror it.
@@ -34,12 +34,12 @@ access codes) out of the repo entirely.
 ```
 GB210/
 ├── index.html        # Root hub — orientation page linking everything below
-├── schedule/         # Course schedule site (week-by-week, links to materials)
+├── schedule/         # Sample course schedule site (week-by-week, links to materials)
 │   └── index.html
 ├── assignments/      # One page per weekly assignment — collects the exercises
 │   ├── week-01.html  #   embedded in that week's readings and Friday tutorial
 │   └── week-02.html
-└── solve/            # The Five Questions (SOLVE framework) site
+└── solve/            # The SOLVE Framework site
     ├── index.html    # Start here: premise, how to use the site
     ├── framework.html
     ├── units.html
