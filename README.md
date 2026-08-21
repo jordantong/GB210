@@ -44,6 +44,7 @@ GB210/
     ├── framework.html
     ├── units.html
     ├── reference.html
+    ├── sponsor-scopes.html   # GB410 sponsor scopes read through SOLVE (instructor resource; disguised names)
     └── about.html
 ```
 
@@ -78,7 +79,12 @@ red palette.
 ## Editing notes
 
 - Each page carries its own copy of the CSS in a `<style>` block; a styling
-  change to the SOLVE site means updating it in all five of its pages.
+  change to the SOLVE site means updating it in all six of its pages.
+- `solve/sponsor-scopes.html` uses **fictional sponsor names** and rounded
+  figures; the real GB410 scopes are under NDA. The real-name version of the
+  page, the fake-to-real mapping, and the source scopes all live outside the
+  repo in `_GB210 Course Development/SOLVE Framework Development/` and must
+  stay there. When editing the page, keep using the fictional names.
 - The Unit 6 descriptions in `solve/units.html` deliberately do **not**
   reveal the Flashion data trap or the diagnosis case’s answers — keep it
   that way; the site is student-facing.
