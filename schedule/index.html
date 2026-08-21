@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Schedule · GB210</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --badger-red:#c5050c; --dark-red:#9b0000; --light-gray:#e1e5e7;
+  --ink:#121212; --muted:#494949; --bg:#ffffff; --wash:#f6f7f8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Red Hat Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;
+  min-height:100vh;display:flex;flex-direction:column}
+.bar{height:6px;background:var(--badger-red)}
+.container{max-width:900px;margin:0 auto;padding:0 24px;width:100%}
+header{border-bottom:1px solid var(--light-gray)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-family:"Red Hat Display",sans-serif;font-weight:700;text-decoration:none;color:var(--ink);font-size:1rem}
+.navbar a.up{text-decoration:none;color:var(--muted);font-size:.92rem}
+.navbar a.up:hover{color:var(--badger-red)}
+main{flex:1;padding:48px 0 24px}
+.kicker{font-family:"Red Hat Display",sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--badger-red);margin-bottom:12px}
+h1{font-family:"Red Hat Display",sans-serif;font-weight:900;font-size:2.3rem;
+  line-height:1.1;letter-spacing:-.01em;margin-bottom:10px}
+.lede{color:var(--muted);max-width:42em;margin-bottom:36px}
+h2{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:1.4rem;margin:0 0 14px}
+table{border-collapse:collapse;width:100%;margin:6px 0 40px;font-size:.95rem}
+th{font-family:"Red Hat Display",sans-serif;text-align:left;font-weight:700;font-size:.85rem;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--bg);background:var(--badger-red);
+  padding:10px 14px;vertical-align:bottom}
+td{border-bottom:1px solid var(--light-gray);padding:14px;vertical-align:top}
+tbody tr:nth-child(even){background:var(--wash)}
+td.week{font-family:"Red Hat Display",sans-serif;font-weight:900;font-size:1.15rem;
+  color:var(--badger-red);width:64px;text-align:center}
+td.dates{width:150px;white-space:nowrap;color:var(--muted);font-size:.9rem}
+td.dates div{margin-bottom:2px}
+td.content ul{list-style:none;margin:0}
+td.content li{margin-bottom:4px}
+td.content li:last-child{margin-bottom:0}
+.tbd{color:var(--muted);font-style:italic;font-size:.9rem}
+.structure{background:var(--wash);border-radius:12px;padding:20px 24px;margin:0 0 36px;max-width:52em}
+.structure h2{margin-bottom:10px}
+.structure ul{list-style:none;margin:0}
+.structure li{padding-left:1.1em;position:relative;margin-bottom:8px;color:var(--ink)}
+.structure li:last-child{margin-bottom:0}
+.structure li::before{content:"—";position:absolute;left:0;color:var(--badger-red)}
+td.content .day{margin-bottom:12px}
+td.content .day:last-child{margin-bottom:0}
+.dl{font-family:"Red Hat Display",sans-serif;display:block;font-weight:700;font-size:.76rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--badger-red);margin-bottom:2px}
+.due{font-size:.85rem;color:var(--muted)}
+.itoggle{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:.8rem;
+  letter-spacing:.04em;color:var(--muted);background:none;border:1px solid var(--light-gray);
+  border-radius:99px;padding:5px 14px;cursor:pointer}
+.itoggle:hover{color:var(--ink);border-color:var(--muted)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--muted);border-radius:8px;
+  padding:10px 14px;margin-top:10px;font-size:.88rem;color:var(--ink)}
+.inote .ilabel{font-family:"Red Hat Display",sans-serif;display:block;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+body.instructor .inote{display:block}
+a{color:var(--dark-red)}
+a:hover{color:var(--badger-red)}
+footer{border-top:1px solid var(--light-gray);padding:22px 0 30px;font-size:.85rem;color:var(--muted)}
+@media (max-width:640px){
+  h1{font-size:1.8rem}
+  td.dates{white-space:normal;width:auto}
+}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<header><div class="container navbar">
+  <a class="brand" href="index.html">Course Schedule · GB210</a>
+  <span style="display:flex;align-items:center;gap:14px">
+    <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+    <a class="up" href="../index.html">GB210 home</a>
+  </span>
+</div></header>
+<main><div class="container">
+  <div class="kicker">GB210 · Business Solutions</div>
+  <h1>Course Schedule</h1>
+  <p class="lede">The week-by-week schedule, with links to readings, assignments, and materials for each session. Details will fill in as the semester approaches.</p>
+
+  <div class="structure">
+    <h2>Weekly Structure</h2>
+    <ul>
+      <li><strong>Fridays</strong> are mostly reserved for AI tutorials and skill development, which live in Xiaoyang’s <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding textbook</a>.</li>
+      <li>Each week’s materials are organized around our <strong>MWF class meetings</strong>, with suggested finish times to help you stay on pace. You’ll get the most out of class if you keep up with the MWF rhythm.</li>
+      <li><strong>Readings are never “due”</strong> — but they often have exercises embedded in them. The <strong>weekly assignment</strong> — linked from each week below — collects those embedded exercises and questions, plus the ones from Friday’s tutorial, and is due <strong>Sunday at 11:59&nbsp;PM</strong>.</li>
+    </ul>
+  </div>
+
+  <h2>Weekly Schedule</h2>
+  <table>
+    <thead>
+      <tr><th>Week</th><th>Dates</th><th>Content</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="week">1</td>
+        <td class="dates"><div>Wed, Jan 20</div><div>Fri, Jan 22</div></td>
+        <td class="content">
+          <div class="day"><span class="dl">Wed · In class</span>
+            Course intro · The Business Solutions framework — first look · Active learning activity
+          </div>
+          <div class="day"><span class="dl">Assigned Wed · Reading</span>
+            <ul>
+              <li><a href="../solve/framework.html">The Five Questions — the framework</a> (10-minute read)</li>
+              <li>Vibecoding Module 0: <a href="https://vibecoding-website-alpha.vercel.app/start/">Why this matters</a> (10 min)</li>
+              <li>Vibecoding Module 1: <a href="https://vibecoding-website-alpha.vercel.app/course/01-talking-to-ai/">Talking to AI</a> (45 min)</li>
+              <li>Vibecoding Module 2: <a href="https://vibecoding-website-alpha.vercel.app/course/02-chat-to-agent/">From prompt to agent</a> (45 min)</li>
+            </ul>
+            <span class="due">Suggested: finish before Friday’s class</span>
+          </div>
+          <div class="day"><span class="dl">Fri · Tutorial</span>
+            “Where did it go” tutorial · Navigating your laptop
+          </div>
+          <div class="day"><span class="dl">Weekly assignment</span>
+            <a href="../assignments/week-01.html">Week 1 assignment</a> — the exercises and questions embedded in the readings above and in Friday’s tutorial. <span class="due">Due Sunday 11:59 PM</span>
+          </div>
+          <div class="inote"><span class="ilabel">Instructor note</span>
+          Friday’s tutorial should at least partially review material from Vibecoding modules 0–2, since students will be mid-read — reinforce, don’t assume completion.</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="week">2</td>
+        <td class="dates"><div>Mon, Jan 25</div><div>Wed, Jan 27</div><div>Fri, Jan 29</div></td>
+        <td class="content">
+          <div class="day"><span class="dl">Mon &amp; Wed · In class</span>
+            Practicing the SOLVE framework — Surface drills — and first basic builds, using only chat-based AI (no setup required).
+          </div>
+          <div class="day"><span class="dl">Assigned Mon · Reading &amp; exercises</span>
+            <ul>
+              <li>SOLVE <a href="../solve/units.html#unit-1">Unit 1: Surface — the ask behind the ask</a>, including its drills</li>
+              <li>Re-read the framework’s <a href="../solve/framework.html#surface">Surface</a> and <a href="../solve/framework.html#observe">Observe</a> questions; keep the <a href="../solve/reference.html">reference cards</a> handy</li>
+            </ul>
+            <span class="due">Suggested: finish before Friday’s class</span>
+          </div>
+          <div class="day"><span class="dl">On your own · Setup</span>
+            Vibecoding Module 3: <a href="https://vibecoding-website-alpha.vercel.app/course/03-setup/">Setting up your workspace</a> (~90 min) — install everything, log in, and run Claude Code from VS Code. Start as early as possible — recommended: right after Monday’s class, so there’s time to hit snags while help is easy to get. Class meetings and Friday’s tutorial are all chances to ask for help.
+          </div>
+          <div class="day"><span class="dl">Fri · Tutorial — Setup checkpoint &amp; first flight</span>
+            The goal: everyone leaves with a working coding agent. Arrive with <a href="https://vibecoding-website-alpha.vercel.app/course/03-setup/">Module 3</a> attempted — if anything is broken, this is the place to get unstuck. Setup already working? Fly it: a short <strong>first-flight build</strong> — your first real task delegated to your agent — plus helping a neighbor debug, which is the fastest way to understand your own setup.
+          </div>
+          <div class="day"><span class="dl">Weekly assignment</span>
+            <a href="../assignments/week-02.html">Week 2 assignment</a> — the exercises embedded in the readings and tutorial, plus a working setup. <span class="due">Due Sunday 11:59 PM</span>
+          </div>
+          <div class="inote"><span class="ilabel">Instructor note</span>
+          <p>The Unit 1 + Surface/Observe re-read is a placeholder recommendation (Claude’s): Unit 1 pairs naturally with chat-only basic builds while setup runs in parallel, and its Surface drills feed the Mon/Wed in-class practice. Swap in whatever SOLVE assignment you settle on.</p>
+          <p>Friday runs as checkpoint + stretch: a quick smoke test everyone performs (agent reads a file, runs a line of code, writes a small file — three checks, two minutes), then triage. Stuck students get hands-on help; finished students do the first-flight build — a tiny, fun, self-contained agent task (e.g., build a one-page personal tool) that exercises the fresh setup and previews Module 4’s workflow — and peer-debugging, which doubles as a diagnostic for who’s actually set up versus who thinks they are. The smoke test and first-flight exercise need writing — they can live on this tutorial’s future page.</p></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="week">3</td>
+        <td class="dates"><div>Mon, Feb 1</div><div>Wed, Feb 3</div><div>Fri, Feb 5</div></td>
+        <td class="content"><span class="tbd">To be announced</span></td>
+      </tr>
+      <tr>
+        <td class="week">4</td>
+        <td class="dates"><div>Mon, Feb 8</div><div>Wed, Feb 10</div><div>Fri, Feb 12</div></td>
+        <td class="content"><span class="tbd">To be announced</span></td>
+      </tr>
+      <tr>
+        <td class="week">5</td>
+        <td class="dates"><div>Mon, Feb 15</div><div>Wed, Feb 17</div><div>Fri, Feb 19</div></td>
+        <td class="content"><span class="tbd">To be announced</span></td>
+      </tr>
+      <tr>
+        <td class="week">6</td>
+        <td class="dates"><div>Mon, Feb 22</div><div>Wed, Feb 24</div><div>Fri, Feb 26</div></td>
+        <td class="content"><span class="tbd">To be announced</span></td>
+      </tr>
+      <tr>
+        <td class="week">7</td>
+        <td class="dates"><div>Mon, Mar 1</div><div>Wed, Mar 3</div><div>Fri, Mar 5</div></td>
+        <td class="content"><span class="tbd">To be announced</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div></main>
+<footer><div class="container">GB210 · Business Solutions · Wisconsin School of Business · University of Wisconsin–Madison</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor')}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor')}
+</script>
+</body>
+</html>

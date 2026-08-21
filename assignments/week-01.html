@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 Assignment · GB210</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --badger-red:#c5050c; --dark-red:#9b0000; --light-gray:#e1e5e7;
+  --ink:#121212; --muted:#494949; --bg:#ffffff; --wash:#f6f7f8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Red Hat Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;
+  min-height:100vh;display:flex;flex-direction:column}
+.bar{height:6px;background:var(--badger-red)}
+.container{max-width:760px;margin:0 auto;padding:0 24px;width:100%}
+header{border-bottom:1px solid var(--light-gray)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-family:"Red Hat Display",sans-serif;font-weight:700;text-decoration:none;color:var(--ink);font-size:1rem}
+.navbar span.links{display:flex;align-items:center;gap:14px}
+.navbar a.up{text-decoration:none;color:var(--muted);font-size:.92rem}
+.navbar a.up:hover{color:var(--badger-red)}
+.itoggle{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:.8rem;
+  letter-spacing:.04em;color:var(--muted);background:none;border:1px solid var(--light-gray);
+  border-radius:99px;padding:5px 14px;cursor:pointer}
+.itoggle:hover{color:var(--ink);border-color:var(--muted)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--muted);border-radius:8px;
+  padding:10px 14px;margin:16px 0;font-size:.88rem;color:var(--ink)}
+.inote .ilabel{font-family:"Red Hat Display",sans-serif;display:block;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+body.instructor .inote{display:block}
+main{flex:1;padding:48px 0 32px}
+.kicker{font-family:"Red Hat Display",sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--badger-red);margin-bottom:12px}
+h1{font-family:"Red Hat Display",sans-serif;font-weight:900;font-size:2.1rem;
+  line-height:1.1;letter-spacing:-.01em;margin-bottom:10px}
+.due-banner{background:var(--wash);border-left:4px solid var(--badger-red);border-radius:0 10px 10px 0;
+  padding:12px 18px;margin:0 0 32px;max-width:46em;font-size:.95rem}
+h2{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:1.25rem;margin:32px 0 10px}
+p{color:var(--ink);max-width:44em;margin-bottom:12px}
+ul{margin:0 0 14px 1.3em;max-width:44em}
+li{margin-bottom:7px}
+a{color:var(--dark-red)}
+a:hover{color:var(--badger-red)}
+.tbd{color:var(--muted);font-style:italic}
+footer{border-top:1px solid var(--light-gray);padding:22px 0 30px;font-size:.85rem;color:var(--muted)}
+@media (max-width:640px){h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<header><div class="container navbar">
+  <a class="brand" href="../schedule/index.html">Course Schedule · GB210</a>
+  <span class="links">
+    <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+    <a class="up" href="../index.html">GB210 home</a>
+  </span>
+</div></header>
+<main><div class="container">
+  <div class="kicker">Weekly assignment</div>
+  <h1>Week 1 Assignment</h1>
+  <div class="due-banner"><strong>Due Sunday, Jan 24 at 11:59 PM.</strong> Submit through Canvas. This page collects the exercises and questions embedded in this week’s readings and tutorial.</div>
+
+  <h2>From the readings</h2>
+  <ul>
+    <li>Exercises embedded in <a href="../solve/framework.html">The Five Questions — the framework</a> <span class="tbd">(list to come)</span></li>
+    <li>Exercises embedded in Vibecoding <a href="https://vibecoding-website-alpha.vercel.app/start/">Module 0</a>, <a href="https://vibecoding-website-alpha.vercel.app/course/01-talking-to-ai/">Module 1</a>, and <a href="https://vibecoding-website-alpha.vercel.app/course/02-chat-to-agent/">Module 2</a> <span class="tbd">(list to come)</span></li>
+  </ul>
+
+  <h2>From Friday’s tutorial</h2>
+  <ul>
+    <li>Exercises from the “Where did it go” tutorial <span class="tbd">(list to come)</span></li>
+  </ul>
+
+  <div class="inote"><span class="ilabel">Instructor note</span>
+  Placeholder skeleton — replace each “list to come” with the specific exercises and questions once the readings and the week 1 tutorial page are finalized.</div>
+</div></main>
+<footer><div class="container">GB210 · Business Solutions · Wisconsin School of Business · University of Wisconsin–Madison</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor')}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor')}
+</script>
+</body>
+</html>

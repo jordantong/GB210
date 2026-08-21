@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Units & exercises · The Five Questions</title>
+<style>
+:root{
+  --red:#c5050c; --red-dark:#9b0000; --ink:#1c1917; --muted:#57534e;
+  --faint:#a8a29e; --bg:#fdfcfb; --card:#ffffff; --line:#e7e5e4;
+  --wash:#f7f5f3; --good:#166534; --accent-wash:#fdf0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(6px);background:rgba(253,252,251,.92)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-weight:750;text-decoration:none;color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
+.brand .q{color:var(--red)}
+nav.menu{display:flex;gap:4px;flex-wrap:wrap}
+nav.menu a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:6px 11px;border-radius:8px}
+nav.menu a:hover{color:var(--ink);background:var(--wash)}
+nav.menu a.active{color:var(--red);font-weight:650;background:var(--accent-wash)}
+main{padding:48px 0 24px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.35rem;line-height:1.15;letter-spacing:-.01em;margin-bottom:16px;font-weight:600}
+.lede{font-size:1.16rem;color:var(--muted);max-width:44em;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:1.55rem;margin:52px 0 14px;font-weight:600;letter-spacing:-.005em}
+h3{font-size:1.08rem;margin:26px 0 8px;font-weight:700}
+p{margin:0 0 14px;max-width:46em}
+ul,ol{margin:0 0 14px 1.35em;max-width:44em}
+li{margin-bottom:7px}
+a{color:var(--red-dark)}
+a:hover{color:var(--red)}
+strong{font-weight:680}
+.rule{border:none;border-top:1px solid var(--line);margin:44px 0}
+.btn-row{display:flex;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:650;font-size:.95rem;
+  padding:11px 20px;border-radius:10px}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-dark)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--faint);background:var(--wash)}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:block;
+  text-decoration:none;color:var(--ink)}
+a.card:hover{border-color:var(--faint);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.card .meta{font-size:.8rem;color:var(--faint);font-weight:650;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.card h3{margin:0 0 6px;font-size:1.06rem}
+.card p{font-size:.93rem;color:var(--muted);margin:0}
+.qblock{display:flex;gap:18px;margin:30px 0;padding:24px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px}
+.qnum{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:750;font-size:1.15rem;font-family:Georgia,serif}
+.qbody h3{margin:2px 0 2px;font-size:1.22rem;font-family:Georgia,serif;font-weight:650}
+.qbody .qq{font-size:1.02rem;color:var(--red-dark);font-style:italic;margin-bottom:12px}
+.qbody p,.qbody ul{font-size:.97rem}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;margin-right:6px;margin-bottom:4px}
+.tag.drill{background:#eef2ff;color:#3730a3}
+.tag.sim{background:var(--accent-wash);color:var(--red-dark)}
+.tag.code{background:#ecfdf5;color:var(--good)}
+.tag.time{background:var(--wash);color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:18px 0 24px;font-size:.92rem}
+th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:8px 10px 6px;vertical-align:bottom}
+td{border-bottom:1px solid var(--line);padding:9px 10px;vertical-align:top}
+tr td:first-child{font-weight:650;white-space:nowrap}
+.callout{background:var(--wash);border-left:4px solid var(--red);border-radius:0 10px 10px 0;
+  padding:16px 20px;margin:22px 0;max-width:46em}
+.callout p:last-child{margin-bottom:0}
+.callout .label{font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.tmpl{background:#1c1917;color:#fafaf9;border-radius:12px;padding:18px 22px;margin:18px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.7;max-width:46em;overflow-x:auto}
+.tmpl .v{color:#fca5a5}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin:26px 0}
+.unit .meta{font-size:.8rem;color:var(--red);font-weight:750;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.unit h3{margin:0 0 4px;font-size:1.3rem;font-family:Georgia,serif;font-weight:650}
+.unit .goal{color:var(--muted);font-size:.98rem;margin-bottom:16px}
+.ex{border-top:1px solid var(--line);padding:14px 0 4px;margin-top:8px}
+.ex h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.ex p,.ex ul{font-size:.94rem;color:var(--ink)}
+.ex .deliver{font-size:.9rem;color:var(--muted)}
+.ex .deliver strong{color:var(--ink)}
+.check{background:var(--wash);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:.93rem}
+.check .label{font-weight:750;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--good);margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;font-size:.88rem;color:var(--muted)}
+footer a{color:var(--muted)}
+.footgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:640px){h1{font-size:1.8rem}.qblock{flex-direction:column;gap:10px}}
+</style>
+<style>
+.itoggle{font-weight:650;font-size:.78rem;letter-spacing:.04em;color:var(--muted);background:none;
+  border:1px solid var(--line);border-radius:99px;padding:5px 13px;cursor:pointer;font-family:inherit}
+.itoggle:hover{color:var(--ink);border-color:var(--faint)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--faint);border-radius:10px;
+  padding:12px 16px;margin:16px 0;font-size:.9rem;max-width:46em}
+.inote .ilabel{display:block;font-size:.7rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.inote p{font-size:.9rem;margin:0 0 8px}
+.inote p:last-child{margin-bottom:0}
+body.instructor .inote{display:block}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+  <a class="brand" href="index.html">The Five <span class="q">Questions</span> · GB210</a>
+  <nav class="menu"><a href="index.html">Start here</a><a href="framework.html">The framework</a><a href="units.html" class="active">Units & exercises</a><a href="reference.html">Reference</a><a href="about.html">About</a></nav>
+  <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+</div></header>
+<main><div class="container">
+<div class="kicker">The practice</div>
+<h1>Units &amp; exercises</h1>
+<p class="lede">Six units. The first five each train one question (one letter of SOLVE) — a short drill you can run in class, then a simulation in the Wisconsin Case Lab, where you interview the people involved — clients, executives, frontline staff — played by AI. Unit 6 runs the entire arc twice: once as a classic diagnosis engagement, once as a data-and-code build.</p>
+
+<p>Legend: <span class="tag drill">Drill</span> in-class, pairs or solo · <span class="tag sim">Sim</span> Wisconsin Case Lab, simulated clients &amp; colleagues · <span class="tag code">Code</span> uses data and AI coding agents (see the <a href="https://vibecoding-website-alpha.vercel.app/">companion vibecoding course</a>) · <span class="tag time">time</span> estimated duration.</p>
+
+<div class="unit" id="unit-1">
+  <div class="meta">Unit 1 · Question 1 · S</div>
+  <h3>Surface — the ask behind the ask</h3>
+  <p class="goal">Train yourself to never accept a brief at face value: clarify, find the bottom line, restate, and get sign-off.</p>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">20 min</span> Six bad briefs</h4>
+    <p>You get six one-sentence asks the way they actually arrive: “we need a TikTok strategy,” “build a dashboard for leadership,” “our onboarding is broken, fix it,” and three more. For each, write (a) the three clarifying questions you'd ask first and (b) your best guess at the bottom-line metric hiding underneath. Debrief by comparing question quality: a good clarifying question changes what you'd do next; a bad one just delays.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">15 min</span> Opening rounds</h4>
+    <p>Pairs, three rounds, rotating. One partner plays a client with a one-line ask (cards provided); the other has four minutes to run a real opening: clarify, establish the bottom-line metric and its baseline, and say the problem back until the client agrees. Partners score one thing only: <em>did you end with a problem statement I'd sign?</em></p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag time">45–60 min</span> The App Nobody Needed</h4>
+    <p>A founder-CEO — confident, visionary, twice successful — opens with: “I want us to build a new app. Something world-class. Can your team scope it?” Somewhere behind that ask is a real business fear and a real bottom-line metric. Your job is to interview your way to it. The CEO will happily let you spend the whole session talking about features; the underlying problem only surfaces for teams that ask about the business, not the app.</p>
+    <p class="deliver"><strong>Deliverable:</strong> a one-sentence problem statement with bottom-line metric and baseline that the CEO explicitly agrees to — plus the list of questions that got you there.</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> You physically can't hear “build us a ___” without asking what it's supposed to cause — and you won't start work before the problem owner has agreed to a sentence.</div>
+</div>
+
+<div class="unit" id="unit-2">
+  <div class="meta">Unit 2 · Question 2 · O</div>
+  <h3>Observe — what people do is the unit of value</h3>
+  <p class="goal">Master the framework's signature move: translating bottom lines into measurable human behaviors, and telling builds, behaviors, and bottom lines apart on sight.</p>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">15 min</span> Build, behavior, or bottom line?</h4>
+    <p>Twenty statements, sixty seconds each in pairs: “the well is built” … “villagers spend less time carrying water” … “40% of reimbursements now arrive through the new form” … “NPS rose six points” … “the model achieved 94% accuracy.” Sort each into build, behavior, or bottom line — and for every build, propose the behavior it's presumably in service of. The accuracy statement starts the best argument of the day.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">25 min</span> The behavior questions, applied</h4>
+    <p>Take five feature requests (from Unit 1's briefs and new ones) and run each through the three behavior questions: <em>What are people doing today? What would they be doing differently if we succeeded? What behaviors predict the result we care about?</em> Then produce, for each request, one linked pair — “if we create [this customer behavior], it will deliver [this business result]” — with a measure for each, tagged leading or lagging.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag time">45–60 min</span> The Campus Partner</h4>
+    <p>A director from a campus organization (dining, recreation, or the food pantry — your section will be assigned one) has funding for “a mobile app to boost engagement” and wants your help spending it well. Interview the director and a frontline staff member to find out what people in the system actually do today, then locate the behaviors worth changing. The best teams leave the app question open until the target behaviors are nailed down — and some sections will conclude the app isn't the answer at all.</p>
+    <p class="deliver"><strong>Deliverable:</strong> two candidate target-behavior statements (who, what they'd do differently, measure, baseline → target), each with its linked business result and one leading indicator you could start watching next week.</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> Given any goal, you reflexively ask “what would I <em>watch people do</em> to know this is working?” — and you can name a leading indicator, not just the lagging one.</div>
+</div>
+
+<div class="unit" id="unit-3">
+  <div class="meta">Unit 3 · Question 3 · L</div>
+  <h3>Learn — trees and journeys</h3>
+  <p class="goal">Decompose problems MECE before solving them, choose the right structure for the question, and use structure to find what you don't know.</p>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">25 min</span> Profit-tree sprint</h4>
+    <p>A company's operating profit fell from 9% to 4% of sales in two years on flat revenue. You get a small fact pack. Build the tree — price, volume, mix, cost — and quantify how many points of margin each branch explains. House rule: if your bars don't sum to roughly the five-point fall, the diagnosis isn't done. Then the twist: which single branch would you investigate first, and what specifically would you ask for?</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">30 min</span> Boosters &amp; blockers</h4>
+    <p>In teams, journey-map a service everyone in the room has used — course registration, the campus clinic, getting coffee between classes. Sticky notes, left to right, two lanes: what the customer does, what staff/systems do. Then the behavior pass: mark green every behavior that predicts a good end (boosters), red every behavior that predicts failure (blockers). Each team leaves with the two behaviors they'd most want to encourage or eliminate — which are, you'll notice, target-behavior statements.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag time">60 min</span> The Reluctant Expert</h4>
+    <p>A diagnosis case where the operations manager holds nearly every fact you need — and volunteers none of them. Vague questions get vague answers; specific questions born from a structure get gold. Teams that build the tree first and interview from it finish in half the time of teams that “just start asking around.” That's the lesson.</p>
+    <p class="deliver"><strong>Deliverable:</strong> your driver map with branches quantified where the facts allow, plus your fact-vs-assumption ledger: what you now know, what you're still assuming, and what you'd go get next.</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> Handed a messy problem, your first move is a structure — and you can defend why it's MECE, which branch is biggest, and what question you'd ask because of it.</div>
+</div>
+
+<div class="unit" id="unit-4">
+  <div class="meta">Unit 4 · Question 4 · V</div>
+  <h3>Vet — cheap experiments, honest evidence</h3>
+  <p class="goal">Write falsifiable hypotheses, design the cheapest test of the shakiest assumption, and start letting data argue with you. Vet before you bet.</p>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">20 min</span> We believe / we'll know</h4>
+    <p>Take the target behaviors your team produced in Unit 2 and write each as a full hypothesis: <em>We believe [change] will create [behavior change]. We'll know we're right when [evidence].</em> Then swap with another team and attack: is the evidence actually observable? Within what timeframe? Would it convince a skeptic, or only the authors?</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">25 min</span> The experiment ladder</h4>
+    <p>One hypothesis, five proposed tests — ranging from “query data we already have” to “run a six-month pilot.” Rank them by cost and by strength of evidence, then design the cheapest test that could genuinely kill the hypothesis. Anchor case: before drilling a village well, you can rent a pump and some hoses for a week. What's the pump-and-hoses version of <em>your</em> test?</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">20 min</span> Case math sprints</h4>
+    <p>Interview-style quantitative reps: market sizing, breakeven, percentage change under time pressure — clean setup, smart rounding, sanity check, answer stated with its “so what.” These reps run in every remaining unit; speed and composure compound.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag code">Code</span><span class="tag time">75–90 min</span> The T-Shirt Test</h4>
+    <p>An online t-shirt retailer believes social sharing drives repeat visits — that's the marketing lead's pet theory, and there's budget riding on it. You get a small customer dataset and an AI coding agent. Interview the marketing lead to pin the hypothesis down precisely, then let the data speak: is the claimed relationship there? How strong? What would you still need to rule out before spending the budget? First coding-integrated exercise — the analysis is a few prompts, and the thinking is the deliverable.</p>
+    <p class="deliver"><strong>Deliverable:</strong> the written hypothesis, your analysis (chart + one paragraph), and a verdict: supported, refuted, or “correlation found, causation untested — here's the cheap experiment that would settle it.”</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> Your instinct on hearing any plan is to name the shakiest must-be-true and the cheapest way to test it — and being wrong early feels like winning, because it is.</div>
+</div>
+
+<div class="unit" id="unit-5">
+  <div class="meta">Unit 5 · Question 5 · E</div>
+  <h3>Earn — the argument and the adoption</h3>
+  <p class="goal">Deliver conclusion-first recommendations that survive hostile questions — and that the people involved will actually adopt.</p>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">20 min</span> The sixty-second answer</h4>
+    <p>Fact pack in hand, you have sixty seconds: recommendation first, two or three reasons, the number that matters, one risk with its mitigation, next step. No wind-up, no chronology, no “so first we looked at…”. Recorded, replayed, repeated. Painful, then permanent.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag drill">Drill</span><span class="tag time">25 min</span> The hostile question gauntlet</h4>
+    <p>Teams exchange draft recommendations and ask each other the questions the most-affected person would ask: <em>Why won't customers walk? Who does this work land on? What happens in month two when compliance slips?</em> A recommendation that dies here would have died worse in the boardroom — better to find out for the price of a class period.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag time">60 min</span> The Skeptic</h4>
+    <p>Present a recommendation (provided, or carried forward from Unit 3's diagnosis) to a VP whose team it would most disrupt — and who has heard consultants before. The VP probes exactly where your adoption argument is thinnest. Round two: revise and re-present. The grade tracks the delta between rounds as much as the polish of either.</p>
+    <p class="deliver"><strong>Deliverable:</strong> a one-page conclusion-first memo — recommendation, reasons, quantified value, risks, adoption plan, and the measurement plan naming the leading indicators that will show within weeks whether it's working.</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> Your first sentence is the answer, your value is in dollars and days rather than adjectives, and you can say — specifically — who has to change their behavior and why they'll be willing.</div>
+</div>
+
+<div class="unit" id="unit-6">
+  <div class="meta">Unit 6 · The full arc</div>
+  <h3>Two complete engagements</h3>
+  <p class="goal">Run all five questions end to end, twice — once in the classic consulting format, once as a modern build with data and code. Same framework, different center of gravity.</p>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag time">2–3 sessions</span> Engagement A · The Turnaround</h4>
+    <p>A family-owned manufacturer's operating profit has slid badly while revenue stayed flat, and the CEO wants a diagnosis and a plan before a board meeting. Different people hold different pieces — a CFO with the segment numbers, a sales VP with strong opinions, an operations manager who knows where the chaos lives — and their stories don't fully agree. This is the archetypal consulting engagement and the most common case-interview format you'll meet in recruiting: diagnosis-first, evidence assembled under time pressure, and a conclusion-first board recommendation at the end. Outcome evidence isn't available before the decision — by design — so your recommendation must build its own measurement plan.</p>
+    <p class="deliver"><strong>Deliverable:</strong> a board-style recommendation: quantified diagnosis, options considered with must-be-trues, the plan with owners, risks, and monitoring.</p>
+  </div>
+
+  <div class="ex">
+    <h4><span class="tag sim">Sim</span><span class="tag code">Code</span><span class="tag time">3–4 sessions</span> Engagement B · Flashion (capstone)</h4>
+    <p>Flashion, an online flash-sale fashion retailer, thinks its event pricing “feels like guesswork” — some events sell out in hours, others leave racks of unsold inventory. The VP of Merchandising is your entry point; a data analyst holds roughly two years of event data, and shares it with teams that ask what exists. Your job runs the whole framework: open the real problem, find the behavior (careful — the target is not “an accurate model”), structure how pricing works today, then build and test an actual pricing tool with AI coding agents, and win adoption from the merchandiser whose judgment your tool would challenge.</p>
+    <p>Two warnings, offered with love. The dataset contains at least one trap that has fooled professional data scientists — teams that interview carefully and explore the data before modeling tend to find it; teams that jump straight to fitting a model tend to become the debrief example. And the merchandiser does not have to use your tool. A model without its adoption argument is a demo, not a deliverable.</p>
+    <p class="deliver"><strong>Deliverable:</strong> a working pricing tool plus the full argument: quantified expected value, honest limitations, override governance, a monitoring plan, and a proposed real-world experiment to reach outcome evidence.</p>
+  </div>
+
+  <div class="check"><div class="label">You've got it when</div> You can walk into an ambiguous problem — with or without data, with or without code — and run the five questions without being told to. That's the course.</div>
+</div>
+
+<h2>The debrief that ties it together</h2>
+<p>After Unit 6, we compare the two engagements directly. The Turnaround is diagnosis-first: the problem hides inside a symptom and Question 3 (Learn) is the star. Flashion is build-first: the ask arrives pre-shaped and the danger is skipping Questions 1–2 (Surface and Observe) to start making things. The evidence mix differs too — the board case maxes out at analytical evidence plus stakeholder pressure-testing, while the build must reach behavioral and outcome evidence or it has shipped a demo. And the adoption burden runs a full gradient: a board that asked for the answer, versus a merchandiser being asked to let a model overrule her judgment. Same five questions, different centers of gravity — and being able to say <em>where the center of gravity is</em> for any new project you meet is the mark that the framework has become yours.</p>
+
+</div></main>
+<footer><div class="container footgrid">
+  <div>GB210 · Business Solutions · Wisconsin School of Business</div>
+  <div><a href="about.html">Sources &amp; credits</a> · Companion: <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding for Business School Students</a></div>
+</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor');syncInstructorLinks()}
+function syncInstructorLinks(){var on=document.body.classList.contains('instructor');
+document.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href')||'';
+if(/^[a-z-]+\.html(\?.*)?$/.test(h)){a.setAttribute('href',on?h.split('?')[0]+'?instructor=1':h.split('?')[0])}})}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor');syncInstructorLinks()}
+</script>
+</body>
+</html>

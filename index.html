@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GB210 · Business Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&family=Red+Hat+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --badger-red:#c5050c; --dark-red:#9b0000; --light-gray:#e1e5e7;
+  --ink:#121212; --muted:#494949; --bg:#ffffff; --wash:#f6f7f8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Red Hat Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;
+  min-height:100vh;display:flex;flex-direction:column}
+.bar{height:6px;background:var(--badger-red)}
+.container{max-width:860px;margin:0 auto;padding:0 24px;width:100%}
+main{flex:1;padding:52px 0 32px}
+.kicker{font-family:"Red Hat Display",sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--badger-red);margin-bottom:12px}
+h1{font-family:"Red Hat Display",sans-serif;font-weight:900;font-size:2.5rem;
+  line-height:1.1;letter-spacing:-.01em;margin-bottom:14px}
+.lede{font-size:1.1rem;color:var(--muted);max-width:42em;margin-bottom:18px}
+.canvas-note{background:var(--wash);border-left:4px solid var(--badger-red);border-radius:0 10px 10px 0;
+  padding:14px 18px;margin:0 0 40px;max-width:46em;font-size:.95rem;color:var(--ink)}
+.canvas-note strong{font-weight:700}
+h2{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:1.15rem;margin:0 0 14px;
+  letter-spacing:.02em}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:40px}
+a.card{display:block;text-decoration:none;color:var(--ink);background:var(--bg);
+  border:1px solid var(--light-gray);border-top:4px solid var(--badger-red);
+  border-radius:12px;padding:24px;transition:box-shadow .15s ease,transform .15s ease}
+a.card:hover{box-shadow:0 4px 16px rgba(18,18,18,.1);transform:translateY(-2px)}
+.card .meta{font-family:"Red Hat Display",sans-serif;font-size:.74rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.card h3{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:6px}
+.card p{font-size:.93rem;color:var(--muted);margin-bottom:12px}
+.card .go{font-family:"Red Hat Display",sans-serif;font-weight:700;font-size:.9rem;color:var(--dark-red)}
+a.card:hover .go{color:var(--badger-red)}
+footer{border-top:1px solid var(--light-gray);padding:22px 0 30px;font-size:.85rem;color:var(--muted)}
+@media (max-width:640px){h1{font-size:1.9rem}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<main><div class="container">
+  <div class="kicker">Wisconsin School of Business</div>
+  <h1>GB210 · Business Solutions</h1>
+  <p class="lede">The companion site for GB210 at the Wisconsin School of Business, University of Wisconsin–Madison — the schedule, the two course “textbooks,” and the simulation lab, all in one place.</p>
+  <div class="canvas-note"><strong>The course runs out of Canvas.</strong> Assignments, due dates, grades, and announcements all live there — check Canvas first for anything with a deadline. This site is where the course content lives.</div>
+
+  <h2>Start with the schedule</h2>
+  <div class="cards">
+    <a class="card" href="schedule/index.html">
+      <div class="meta">Week by week</div>
+      <h3>Course Schedule</h3>
+      <p>What each week covers, with links into the readings, exercises, and simulations below. This is the map for everything else on this page.</p>
+      <span class="go">Go to the schedule →</span>
+    </a>
+  </div>
+
+  <h2>The two textbooks</h2>
+  <div class="cards">
+    <a class="card" href="solve/index.html">
+      <div class="meta">Textbook · Problem solving</div>
+      <h3>The Five Questions</h3>
+      <p>The SOLVE framework — five questions that solve business problems, with units, drills, and reference cards. Written for this course.</p>
+      <span class="go">Go to the framework →</span>
+    </a>
+    <a class="card" href="https://vibecoding-website-alpha.vercel.app/">
+      <div class="meta">Textbook · Building with AI</div>
+      <h3>Vibecoding for Business School Students</h3>
+      <p>How to build working software by directing AI agents — modules, use cases, and reference for people without an engineering background.</p>
+      <span class="go">Go to the vibecoding site ↗</span>
+    </a>
+  </div>
+
+  <h2>The simulation lab</h2>
+  <div class="cards">
+    <a class="card" href="https://wisconsincaselab.com">
+      <div class="meta">Simulations</div>
+      <h3>Wisconsin Case Lab</h3>
+      <p>Interview-driven client simulations where AI plays your clients and the people around them. Each exercise needs an access code — you’ll find it in Canvas when the exercise is assigned.</p>
+      <span class="go">Go to the Case Lab ↗</span>
+    </a>
+  </div>
+</div></main>
+<footer><div class="container">GB210 · Business Solutions · Wisconsin School of Business · University of Wisconsin–Madison</div></footer>
+</body>
+</html>

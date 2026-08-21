@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The framework · The Five Questions</title>
+<style>
+:root{
+  --red:#c5050c; --red-dark:#9b0000; --ink:#1c1917; --muted:#57534e;
+  --faint:#a8a29e; --bg:#fdfcfb; --card:#ffffff; --line:#e7e5e4;
+  --wash:#f7f5f3; --good:#166534; --accent-wash:#fdf0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(6px);background:rgba(253,252,251,.92)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-weight:750;text-decoration:none;color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
+.brand .q{color:var(--red)}
+nav.menu{display:flex;gap:4px;flex-wrap:wrap}
+nav.menu a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:6px 11px;border-radius:8px}
+nav.menu a:hover{color:var(--ink);background:var(--wash)}
+nav.menu a.active{color:var(--red);font-weight:650;background:var(--accent-wash)}
+main{padding:48px 0 24px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.35rem;line-height:1.15;letter-spacing:-.01em;margin-bottom:16px;font-weight:600}
+.lede{font-size:1.16rem;color:var(--muted);max-width:44em;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:1.55rem;margin:52px 0 14px;font-weight:600;letter-spacing:-.005em}
+h3{font-size:1.08rem;margin:26px 0 8px;font-weight:700}
+p{margin:0 0 14px;max-width:46em}
+ul,ol{margin:0 0 14px 1.35em;max-width:44em}
+li{margin-bottom:7px}
+a{color:var(--red-dark)}
+a:hover{color:var(--red)}
+strong{font-weight:680}
+.rule{border:none;border-top:1px solid var(--line);margin:44px 0}
+.btn-row{display:flex;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:650;font-size:.95rem;
+  padding:11px 20px;border-radius:10px}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-dark)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--faint);background:var(--wash)}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:block;
+  text-decoration:none;color:var(--ink)}
+a.card:hover{border-color:var(--faint);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.card .meta{font-size:.8rem;color:var(--faint);font-weight:650;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.card h3{margin:0 0 6px;font-size:1.06rem}
+.card p{font-size:.93rem;color:var(--muted);margin:0}
+.qblock{display:flex;gap:18px;margin:30px 0;padding:24px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px}
+.qnum{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:750;font-size:1.15rem;font-family:Georgia,serif}
+.qbody h3{margin:2px 0 2px;font-size:1.22rem;font-family:Georgia,serif;font-weight:650}
+.qbody .qq{font-size:1.02rem;color:var(--red-dark);font-style:italic;margin-bottom:12px}
+.qbody p,.qbody ul{font-size:.97rem}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;margin-right:6px;margin-bottom:4px}
+.tag.drill{background:#eef2ff;color:#3730a3}
+.tag.sim{background:var(--accent-wash);color:var(--red-dark)}
+.tag.code{background:#ecfdf5;color:var(--good)}
+.tag.time{background:var(--wash);color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:18px 0 24px;font-size:.92rem}
+th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:8px 10px 6px;vertical-align:bottom}
+td{border-bottom:1px solid var(--line);padding:9px 10px;vertical-align:top}
+tr td:first-child{font-weight:650;white-space:nowrap}
+.callout{background:var(--wash);border-left:4px solid var(--red);border-radius:0 10px 10px 0;
+  padding:16px 20px;margin:22px 0;max-width:46em}
+.callout p:last-child{margin-bottom:0}
+.callout .label{font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.tmpl{background:#1c1917;color:#fafaf9;border-radius:12px;padding:18px 22px;margin:18px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.7;max-width:46em;overflow-x:auto}
+.tmpl .v{color:#fca5a5}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin:26px 0}
+.unit .meta{font-size:.8rem;color:var(--red);font-weight:750;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.unit h3{margin:0 0 4px;font-size:1.3rem;font-family:Georgia,serif;font-weight:650}
+.unit .goal{color:var(--muted);font-size:.98rem;margin-bottom:16px}
+.ex{border-top:1px solid var(--line);padding:14px 0 4px;margin-top:8px}
+.ex h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.ex p,.ex ul{font-size:.94rem;color:var(--ink)}
+.ex .deliver{font-size:.9rem;color:var(--muted)}
+.ex .deliver strong{color:var(--ink)}
+.check{background:var(--wash);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:.93rem}
+.check .label{font-weight:750;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--good);margin-bottom:4px}
+.rail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:26px 0 6px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.rail .rs{display:flex;align-items:center;gap:10px}
+.rail .rl{width:42px;height:42px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:750;font-size:1.15rem;font-family:Georgia,serif;flex:0 0 auto}
+.rail .rn{font-weight:700;font-size:.95rem;line-height:1.15}
+.rail .rn span{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.rail .ra{color:var(--faint);margin:0 4px}
+.railline{font-size:.95rem;color:var(--muted);margin:0 0 4px 4px}
+.qkick{font-size:.72rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:1px}
+@media (max-width:640px){.rail{gap:6px;padding:14px 16px}.rail .ra{display:none}}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;font-size:.88rem;color:var(--muted)}
+footer a{color:var(--muted)}
+.footgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:640px){h1{font-size:1.8rem}.qblock{flex-direction:column;gap:10px}}
+</style>
+<style>
+.itoggle{font-weight:650;font-size:.78rem;letter-spacing:.04em;color:var(--muted);background:none;
+  border:1px solid var(--line);border-radius:99px;padding:5px 13px;cursor:pointer;font-family:inherit}
+.itoggle:hover{color:var(--ink);border-color:var(--faint)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--faint);border-radius:10px;
+  padding:12px 16px;margin:16px 0;font-size:.9rem;max-width:46em}
+.inote .ilabel{display:block;font-size:.7rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.inote p{font-size:.9rem;margin:0 0 8px}
+.inote p:last-child{margin-bottom:0}
+body.instructor .inote{display:block}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+  <a class="brand" href="index.html">The Five <span class="q">Questions</span> · GB210</a>
+  <nav class="menu"><a href="index.html">Start here</a><a href="framework.html" class="active">The framework</a><a href="units.html">Units & exercises</a><a href="reference.html">Reference</a><a href="about.html">About</a></nav>
+  <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+</div></header>
+<main><div class="container">
+<div class="kicker">The framework</div>
+<h1>The Five Questions</h1>
+<p class="lede">Every project is a claim about value. The five questions turn that claim from a hunch into an argument — and together they spell <strong>SOLVE</strong>, because that's what they do. Each is a checkpoint you must be able to answer <em>yes, and here's the evidence</em>, not a phase you finish and leave behind.</p>
+<div class="rail">
+  <div class="rs"><div class="rl">S</div><div class="rn">Surface<span>the real problem</span></div></div><div class="ra">→</div>
+  <div class="rs"><div class="rl">O</div><div class="rn">Observe<span>the behavior</span></div></div><div class="ra">→</div>
+  <div class="rs"><div class="rl">L</div><div class="rn">Learn<span>the drivers</span></div></div><div class="ra">→</div>
+  <div class="rs"><div class="rl">V</div><div class="rn">Vet<span>the shakiest claim</span></div></div><div class="ra">→</div>
+  <div class="rs"><div class="rl">E</div><div class="rn">Earn<span>the yes</span></div></div>
+</div>
+<p class="railline">Say it once and you have the framework: <em>Surface, Observe, Learn, Vet, Earn.</em></p>
+
+<h2>First, the vocabulary — the three Bs</h2>
+<p>Three words do most of the work in this framework — the three Bs — and they are not interchangeable:</p>
+<table>
+  <tr><th></th><th>Definition</th><th>Village-well example</th><th>Business example</th></tr>
+  <tr><td>Build</td><td>What you make — the thing you build, ship, or deliver. Finished ≠ valuable.</td><td>The well is built.</td><td>The app shipped; the deck was delivered.</td></tr>
+  <tr><td>Behavior</td><td><strong>What people do — something they start or stop doing that creates business results.</strong> Observable and measurable.</td><td>Villagers spend less time carrying water.</td><td>Customers return twice a month instead of once.</td></tr>
+  <tr><td>Bottom line</td><td>What the business gets — the high-level result leaders care about. The sum of many behavior changes — too big for any one team to target directly.</td><td>Standard of living rises.</td><td>Revenue, cost, market share, NPS.</td></tr>
+</table>
+<div class="inote"><span class="ilabel">Instructor note</span>
+<p>Elsewhere students will meet this same ladder as <em>outputs → outcomes → impact</em> — the social sector’s program logic vocabulary, carried into product work by Josh Seiden’s <em>Outcomes Over Output</em>. Same levels, same logic; worth naming the mapping in class so they can speak both dialects.</p></div>
+<p>Most failed projects fail by confusing these levels: teams get handed a bottom line (“grow revenue”), skip straight to a build (“new app”), and never name the behavior in between. The framework's center of gravity — the question that makes it different from a generic problem-solving recipe — is Question 2 — the O in SOLVE — which forces you to work at the behavior level.</p>
+
+<div class="qblock" id="surface">
+  <div class="qnum">S</div>
+  <div class="qbody">
+    <div class="qkick">Question 1</div>
+    <h3>Surface the real problem</h3>
+    <div class="qq">What's the ask behind the ask — and what bottom line does it serve?</div>
+    <p>Asks arrive vague (“profits are down, help”) or pre-shaped as solutions (“build us a model”). Either way, don't accept them at face value. Clarify who the client is, what they're really trying to achieve, what's in and out of scope, what constraints bind, and — critically — <strong>which bottom-line metric</strong> this serves and what its baseline is. Success means beating current practice, so go find out what today actually looks like. Then say the problem back and get agreement from the person who owns it.</p>
+    <p><strong>You produce:</strong> a one-sentence problem statement with a bottom-line metric, a baseline, and the problem owner's sign-off.</p>
+    <p><strong>Where people go wrong:</strong> accepting the requested thing as the problem. The client who asks for an app rarely needs an app; they need something the app is supposed to cause.</p>
+    <p><strong>In a case interview:</strong> this is the Opening — restate the prompt, ask two or three sharp clarifying questions, confirm the objective before touching structure.</p>
+  </div>
+</div>
+
+<div class="qblock" id="observe">
+  <div class="qnum">O</div>
+  <div class="qbody">
+    <div class="qkick">Question 2</div>
+    <h3>Observe the behavior</h3>
+    <div class="qq">Whose behavior has to change — and how would we measure it?</div>
+    <p>Translate the bottom line into one or more target behaviors using the three behavior questions: <em>What are people doing today? What would they be doing differently if we succeeded? What behaviors predict the result we care about?</em> “People” means customers, users, employees, or stakeholders — anyone in the system. Because behaviors are things people <em>do</em>, they're observable and measurable — which is what makes them a target you can actually manage toward.</p>
+    <p>State the linkage explicitly, in pairs: <em>if we create this behavior change for the customer, it will deliver this result for the business.</em> And know your indicators: the bottom line is usually a <strong>lagging</strong> indicator (it tells you how you did); the behavior should be a <strong>leading</strong> one (it tells you where you're headed while you can still steer).</p>
+    <p><strong>You produce:</strong> a target behavior statement — who, what they'd do differently, measured how, from what baseline to what target.</p>
+    <p><strong>Where people go wrong:</strong> targeting a build (“launch the tool”) or a bottom line (“increase revenue”) and calling it a behavior. If you can't watch someone do it, it isn't one.</p>
+    <p><strong>In a case interview:</strong> this is what separates a good opening from a great one — restating “grow profit” as the customer or operational behavior that would have to move.</p>
+  </div>
+</div>
+
+<div class="qblock" id="learn">
+  <div class="qnum">L</div>
+  <div class="qbody">
+    <div class="qkick">Question 3</div>
+    <h3>Learn the drivers</h3>
+    <div class="qq">What drives that behavior today — and what don't we know yet?</div>
+    <p>Decompose before you solve, and stay solution-agnostic while you do it. Two structures cover most problems. When the question is economic — where did the profit go, what does this cost — build an <strong>issue tree</strong>: break the metric into parts that are mutually exclusive and collectively exhaustive (MECE), then quantify how much each branch explains. When the question is behavioral — why don't people do X — build a <strong>journey map</strong>: lay out what people actually do step by step, then mark the <strong>boosters</strong> (behaviors that predict success) and <strong>blockers</strong> (behaviors that predict failure) at each step.</p>
+    <p>Structure is a discovery tool, not a decoration: the tree tells you which numbers to go get; the map tells you which people to go watch and interview. Keep a running list of what's a fact you found versus an assumption you're carrying.</p>
+    <p><strong>You produce:</strong> a driver map — tree or journey — with the branches quantified where possible, plus an explicit list of unknowns.</p>
+    <p><strong>Where people go wrong:</strong> reciting a memorized framework instead of structuring <em>this</em> problem; or polishing the analysis forever instead of ranking branches by size and going deep on the few that matter.</p>
+    <p><strong>In a case interview:</strong> this is the Structure — the moment the interviewer decides whether you think in organized ways. Draw the tree, say it aloud, then pick the branch your hypothesis points to.</p>
+  </div>
+</div>
+
+<div class="qblock" id="vet">
+  <div class="qnum">V</div>
+  <div class="qbody">
+    <div class="qkick">Question 4</div>
+    <h3>Vet the shakiest claim</h3>
+    <div class="qq">We believe X — what's the cheapest way to find out we're wrong?</div>
+    <p>Turn your leading option into a falsifiable claim using the two-part template: <em>We believe [this change] will create [this behavior change]. We'll know we're right when [this measurable evidence].</em> Then list everything that must be true for the claim to hold, rank those conditions by shakiness, and design the cheapest test that attacks the shakiest one — <strong>vet before you bet</strong>. That test is <strong>an experiment</strong>: the smallest thing you can do or make to learn whether the hypothesis is true. (A note on the word “MVP”: some fields use it for exactly this kind of cheap experiment; others — including product management — use it for a first sellable release with a deliberately chosen feature set. Both uses are legitimate, and they are different things — so this framework says <em>cheapest test</em>, and lets “MVP” mean whatever your field means by it.)</p>
+    <p>Evidence comes in three kinds, and strong work names which kind it has: <strong>analytical</strong> (does the logic and math hold?), <strong>behavioral</strong> (do people actually do what the claim requires?), and <strong>outcome</strong> (did the metric move?). Expect to be partly wrong while wrong is still cheap — and when a test fails, loop: back to another option, or back to Question 3 with better information.</p>
+    <p><strong>You produce:</strong> a written hypothesis, a ranked must-be-true list, test results, and a record of what you revised because of them.</p>
+    <p><strong>Where people go wrong:</strong> running analysis to confirm the answer they've already chosen; or “testing” by building the whole thing. If your first experiment takes a month, it isn't an experiment.</p>
+    <p><strong>In a case interview:</strong> this is the Analysis — state a hypothesis, ask for the data that could break it, do the math cleanly, and update out loud when the numbers surprise you.</p>
+  </div>
+</div>
+
+<div class="qblock" id="earn">
+  <div class="qnum">E</div>
+  <div class="qbody">
+    <div class="qkick">Question 5</div>
+    <h3>Earn the yes</h3>
+    <div class="qq">What should the client do Monday morning — and will the people involved actually do it?</div>
+    <p>The final deliverable is an argument, not a report of activity. Lead with the conclusion, support it with two or three reasons, back each reason with evidence, quantify the value in dollars and days rather than adjectives, and name the risks with mitigations. Then add the part most teams forget: the <strong>adoption argument</strong>. Every recommendation asks somebody to change <em>their</em> behavior — your colleagues and stakeholders are customers too — so the more your solution changes how people work, the heavier that argument must be. A model without its adoption argument is a demo, not a deliverable.</p>
+    <p>Finally, close the loop you opened in Question 2: specify the measurement plan — which leading indicators will show, within weeks, whether the must-be-trues are holding.</p>
+    <p><strong>You produce:</strong> a conclusion-first recommendation (sometimes wrapped around a working artifact) with quantified value, risks, an adoption plan, and a measurement plan.</p>
+    <p><strong>Where people go wrong:</strong> narrating everything they did in chronological order; or delivering an answer that's analytically right and dead on arrival because nobody asked the people who'd have to live with it.</p>
+    <p><strong>In a case interview:</strong> this is the Recommendation — thirty to sixty seconds, answer first, no wind-up, risks acknowledged, next step named.</p>
+  </div>
+</div>
+
+<h2>The loop</h2>
+<p>On paper the letters run S → E. In practice, vetting a claim (V) reveals the structure was wrong (L); learning the drivers (L) reveals you observed the wrong behavior (O); drafting the recommendation (E) reveals the problem was never agreed to (S). This is not failure — it is the scientific method doing exactly what it's for: being wrong early, cheaply, and on purpose, instead of late, expensively, and by surprise.</p>
+<div class="callout">
+  <div class="label">House rule</div>
+  <p>Document your loops. A project log showing what you believed, what evidence changed your mind, and what you revised is <em>evidence of method</em> — and it's graded that way. Hiding your revisions only hides your best work.</p>
+</div>
+
+<h2>One framework, three dialects</h2>
+<p>You'll meet this arc under different names for the rest of your career. It's worth seeing the mapping once:</p>
+<table>
+  <tr><th>The Five Questions</th><th>Case interview</th><th>Outcomes practice</th></tr>
+  <tr><td>S · Surface the real problem</td><td>The Opening</td><td>Name the impact — and refuse to start from a feature</td></tr>
+  <tr><td>O · Observe the behavior</td><td>(the great opening's secret)</td><td>Outcomes &amp; the magic questions; leading indicators</td></tr>
+  <tr><td>L · Learn the drivers</td><td>The Structure</td><td>Journey maps, boosters &amp; blockers</td></tr>
+  <tr><td>V · Vet the shakiest claim</td><td>The Analysis</td><td>Hypotheses, experiments, MVP-as-experiment</td></tr>
+  <tr><td>E · Earn the yes</td><td>The Recommendation</td><td>Outcome-based roadmap; colleagues are customers</td></tr>
+</table>
+<div class="inote"><span class="ilabel">Instructor note</span>
+<p>The case-interview column follows the four-part arc in Davis Nguyen et&nbsp;al.’s <em>Case Interview Decoded</em>; the outcomes column follows Josh Seiden’s <em>Outcomes Over Output</em>. Both are credited in full on the About page.</p></div>
+<p>When you later meet MECE trees and Minto pyramids in consulting, build–measure–learn in product, CRISP-DM in analytics, or OKRs anywhere, ask one question first: <em>which of the five questions is this a tool for?</em> None of them will contradict the framework; each is a specialized instrument for one of its moves.</p>
+
+<div class="btn-row">
+  <a class="btn primary" href="units.html">Start practicing — Unit 1</a>
+  <a class="btn ghost" href="reference.html">Open the reference cards</a>
+</div>
+
+</div></main>
+<footer><div class="container footgrid">
+  <div>GB210 · Business Solutions · Wisconsin School of Business</div>
+  <div><a href="about.html">Sources &amp; credits</a> · Companion: <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding for Business School Students</a></div>
+</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor');syncInstructorLinks()}
+function syncInstructorLinks(){var on=document.body.classList.contains('instructor');
+document.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href')||'';
+if(/^[a-z-]+\.html(\?.*)?$/.test(h)){a.setAttribute('href',on?h.split('?')[0]+'?instructor=1':h.split('?')[0])}})}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor');syncInstructorLinks()}
+</script>
+</body>
+</html>

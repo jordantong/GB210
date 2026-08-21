@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · The Five Questions</title>
+<style>
+:root{
+  --red:#c5050c; --red-dark:#9b0000; --ink:#1c1917; --muted:#57534e;
+  --faint:#a8a29e; --bg:#fdfcfb; --card:#ffffff; --line:#e7e5e4;
+  --wash:#f7f5f3; --good:#166534; --accent-wash:#fdf0f0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.65;font-size:17px}
+.container{max-width:920px;margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10;
+  backdrop-filter:blur(6px);background:rgba(253,252,251,.92)}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;flex-wrap:wrap;gap:8px}
+.brand{font-weight:750;text-decoration:none;color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
+.brand .q{color:var(--red)}
+nav.menu{display:flex;gap:4px;flex-wrap:wrap}
+nav.menu a{text-decoration:none;color:var(--muted);font-size:.92rem;padding:6px 11px;border-radius:8px}
+nav.menu a:hover{color:var(--ink);background:var(--wash)}
+nav.menu a.active{color:var(--red);font-weight:650;background:var(--accent-wash)}
+main{padding:48px 0 24px}
+.kicker{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:2.35rem;line-height:1.15;letter-spacing:-.01em;margin-bottom:16px;font-weight:600}
+.lede{font-size:1.16rem;color:var(--muted);max-width:44em;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:1.55rem;margin:52px 0 14px;font-weight:600;letter-spacing:-.005em}
+h3{font-size:1.08rem;margin:26px 0 8px;font-weight:700}
+p{margin:0 0 14px;max-width:46em}
+ul,ol{margin:0 0 14px 1.35em;max-width:44em}
+li{margin-bottom:7px}
+a{color:var(--red-dark)}
+a:hover{color:var(--red)}
+strong{font-weight:680}
+.rule{border:none;border-top:1px solid var(--line);margin:44px 0}
+.btn-row{display:flex;gap:12px;margin:26px 0 8px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:650;font-size:.95rem;
+  padding:11px 20px;border-radius:10px}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red-dark)}
+.btn.ghost{border:1.5px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{border-color:var(--faint);background:var(--wash)}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:block;
+  text-decoration:none;color:var(--ink)}
+a.card:hover{border-color:var(--faint);box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.card .meta{font-size:.8rem;color:var(--faint);font-weight:650;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.card h3{margin:0 0 6px;font-size:1.06rem}
+.card p{font-size:.93rem;color:var(--muted);margin:0}
+.qblock{display:flex;gap:18px;margin:30px 0;padding:24px;background:var(--card);
+  border:1px solid var(--line);border-radius:14px}
+.qnum{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:750;font-size:1.15rem;font-family:Georgia,serif}
+.qbody h3{margin:2px 0 2px;font-size:1.22rem;font-family:Georgia,serif;font-weight:650}
+.qbody .qq{font-size:1.02rem;color:var(--red-dark);font-style:italic;margin-bottom:12px}
+.qbody p,.qbody ul{font-size:.97rem}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;margin-right:6px;margin-bottom:4px}
+.tag.drill{background:#eef2ff;color:#3730a3}
+.tag.sim{background:var(--accent-wash);color:var(--red-dark)}
+.tag.code{background:#ecfdf5;color:var(--good)}
+.tag.time{background:var(--wash);color:var(--muted)}
+table{border-collapse:collapse;width:100%;margin:18px 0 24px;font-size:.92rem}
+th{text-align:left;font-weight:700;border-bottom:2px solid var(--ink);padding:8px 10px 6px;vertical-align:bottom}
+td{border-bottom:1px solid var(--line);padding:9px 10px;vertical-align:top}
+tr td:first-child{font-weight:650;white-space:nowrap}
+.callout{background:var(--wash);border-left:4px solid var(--red);border-radius:0 10px 10px 0;
+  padding:16px 20px;margin:22px 0;max-width:46em}
+.callout p:last-child{margin-bottom:0}
+.callout .label{font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+.tmpl{background:#1c1917;color:#fafaf9;border-radius:12px;padding:18px 22px;margin:18px 0;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.7;max-width:46em;overflow-x:auto}
+.tmpl .v{color:#fca5a5}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin:26px 0}
+.unit .meta{font-size:.8rem;color:var(--red);font-weight:750;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.unit h3{margin:0 0 4px;font-size:1.3rem;font-family:Georgia,serif;font-weight:650}
+.unit .goal{color:var(--muted);font-size:.98rem;margin-bottom:16px}
+.ex{border-top:1px solid var(--line);padding:14px 0 4px;margin-top:8px}
+.ex h4{font-size:1rem;font-weight:700;margin-bottom:6px}
+.ex p,.ex ul{font-size:.94rem;color:var(--ink)}
+.ex .deliver{font-size:.9rem;color:var(--muted)}
+.ex .deliver strong{color:var(--ink)}
+.check{background:var(--wash);border-radius:10px;padding:14px 18px;margin-top:16px;font-size:.93rem}
+.check .label{font-weight:750;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--good);margin-bottom:4px}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 0 40px;font-size:.88rem;color:var(--muted)}
+footer a{color:var(--muted)}
+.footgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:640px){h1{font-size:1.8rem}.qblock{flex-direction:column;gap:10px}}
+</style>
+<style>
+.itoggle{font-weight:650;font-size:.78rem;letter-spacing:.04em;color:var(--muted);background:none;
+  border:1px solid var(--line);border-radius:99px;padding:5px 13px;cursor:pointer;font-family:inherit}
+.itoggle:hover{color:var(--ink);border-color:var(--faint)}
+body.instructor .itoggle{color:#fff;background:var(--ink);border-color:var(--ink)}
+.inote{display:none;background:var(--wash);border:1px dashed var(--faint);border-radius:10px;
+  padding:12px 16px;margin:16px 0;font-size:.9rem;max-width:46em}
+.inote .ilabel{display:block;font-size:.7rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.inote p{font-size:.9rem;margin:0 0 8px}
+.inote p:last-child{margin-bottom:0}
+body.instructor .inote{display:block}
+</style>
+</head>
+<body>
+<header><div class="container navbar">
+  <a class="brand" href="index.html">The Five <span class="q">Questions</span> · GB210</a>
+  <nav class="menu"><a href="index.html">Start here</a><a href="framework.html">The framework</a><a href="units.html">Units & exercises</a><a href="reference.html">Reference</a><a href="about.html" class="active">About</a></nav>
+  <button class="itoggle" type="button" onclick="toggleInstructor()">Instructor view</button>
+</div></header>
+<main><div class="container">
+<div class="kicker">About</div>
+<h1>About this site</h1>
+<p class="lede">Course materials for GB210 (Business Solutions) at the Wisconsin School of Business — a framework for solving business problems, and the exercises and simulations that train it.</p>
+
+<h2>What this is</h2>
+<p>GB210 prepares you to run business projects of every stripe — consulting engagements, product and software builds, analytics work, process improvement — with one shared method. This site holds the method (<a href="framework.html">the Five Questions</a> — five moves that spell <strong>SOLVE</strong>), the practice sequence (<a href="units.html">six units</a> of drills and simulations), and the working toolkit (<a href="reference.html">reference cards</a>).</p>
+<p>Simulations run in the <strong>Wisconsin Case Lab</strong>, where you interview simulated people from the client company — CEOs, analysts, skeptical executives, all played by AI — to uncover problems and pressure-test your work. Later units integrate data analysis and tool-building with AI coding agents; the skills for that live in the companion course, <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding for Business School Students</a>.</p>
+
+<h2>Sources</h2>
+<p>The framework is a synthesis, and it wears its sources proudly. If this course works on you, read both books — each is short and worth owning:</p>
+<ul>
+  <li><strong>Josh Seiden, <em>Outcomes Over Output: Why Customer Behavior Is the Key Metric for Business Success</em></strong> (Sense &amp; Respond Press, 2019). The source of the ladder behind the framework's three Bs (his terms: outputs, outcomes, impact — our build, behavior, bottom line), the definition of an outcome — our behavior — as a change in human behavior that drives business results, the “magic questions” our behavior questions adapt, the hypothesis template, the experiment-first reading of “MVP,” journey maps with boosters and blockers, and the insistence that colleagues are customers too.</li>
+  <li><strong>Davis Nguyen et&nbsp;al., <em>Case Interview Decoded</em></strong> (2023). The source of the four-part case arc — Opening, Structure, Analysis, Recommendation — that the Five Questions extend, and of the practice philosophy the drills follow: master one element at a time rather than everything at once.</li>
+  <li>The framework also draws on the standard consulting canon the course will name as you meet it: MECE decomposition and issue trees, hypothesis-driven analysis, and conclusion-first (Minto-style) communication.</li>
+</ul>
+
+<h2>A note on the framework's lineage</h2>
+<p>An earlier version of this material framed the same ideas as five steps — frame the problem, break it down, explore options, check it, make the case. The Five Questions keep that arc but promote the behavior move to its own question, because it is the step students (and professionals) most reliably skip, and the one that most changes what all the other steps produce. If you took a section taught with the earlier framing: nothing you learned is wrong; Question 2 is what's new. In the current edition the five moves are named Surface, Observe, Learn, Vet, and Earn — <strong>SOLVE</strong>.</p>
+
+<h2>Credits</h2>
+<p>Developed by Jordan Tong, Wisconsin School of Business, University of Wisconsin–Madison. Simulations built on the Wisconsin Case Lab platform. Suggestions and bug reports welcome — tell your instructor, or bring them to office hours.</p>
+
+</div></main>
+<footer><div class="container footgrid">
+  <div>GB210 · Business Solutions · Wisconsin School of Business</div>
+  <div><a href="about.html">Sources &amp; credits</a> · Companion: <a href="https://vibecoding-website-alpha.vercel.app/">Vibecoding for Business School Students</a></div>
+</div></footer>
+<script>
+function toggleInstructor(){document.body.classList.toggle('instructor');syncInstructorLinks()}
+function syncInstructorLinks(){var on=document.body.classList.contains('instructor');
+document.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href')||'';
+if(/^[a-z-]+\.html(\?.*)?$/.test(h)){a.setAttribute('href',on?h.split('?')[0]+'?instructor=1':h.split('?')[0])}})}
+if(new URLSearchParams(location.search).get('instructor')==='1'){document.body.classList.add('instructor');syncInstructorLinks()}
+</script>
+</body>
+</html>
